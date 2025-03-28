@@ -52,13 +52,20 @@ npm run dev
 
 ## What technologies are used for this project?
 
-This project is built with .
+This project is built with:
 
 - Vite
 - TypeScript
 - React
 - shadcn-ui
 - Tailwind CSS
+
+### Technology Logos
+![Vite](https://vitejs.dev/logo.svg)
+![TypeScript](https://www.typescriptlang.org/assets/images/icons/apple-touch-icon-120x120.png)
+![React](https://reactjs.org/logo-og.png)
+![shadcn-ui](https://shadcn.dev/logo.png)
+![Tailwind CSS](https://tailwindcss.com/img/tailwindcss-logo.svg)
 
 ## How can I deploy this project?
 
