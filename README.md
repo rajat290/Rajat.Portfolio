@@ -7,11 +7,11 @@ This project was developed to [insert purpose here, e.g., provide a solution for
 This project includes [briefly describe the main features and functionalities of the project]. It is designed to [explain what the project does and its intended audience].
 
 ## Technologies Used
-- ![Vite](https://vitejs.dev/logo.svg) Vite
-- ![TypeScript](https://www.typescriptlang.org/assets/images/icons/apple-touch-icon-120x120.png) TypeScript
-- ![React](https://reactjs.org/logo-og.png) React
-- ![shadcn-ui](https://shadcn.dev/logo.png) shadcn-ui
-- ![Tailwind CSS](https://tailwindcss.com/img/tailwindcss-logo.svg) Tailwind CSS
+[![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=white&style=for-the-badge)](https://vitejs.dev)
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?logo=typescript&logoColor=white&style=for-the-badge)](https://www.typescriptlang.org)
+[![React](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=black&style=for-the-badge)](https://reactjs.org)
+[![shadcn-ui](https://img.shields.io/badge/shadcn--ui-000000?logo=shadcn&logoColor=white&style=for-the-badge)](https://shadcn.dev)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-06B6D4?logo=tailwindcss&logoColor=white&style=for-the-badge)](https://tailwindcss.com)
 
 ## Benefits
 This project will help [explain how the project can assist users, solve problems, or provide value].
