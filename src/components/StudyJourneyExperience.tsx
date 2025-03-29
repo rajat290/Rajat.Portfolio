@@ -46,43 +46,43 @@ const StudyJourneyExperience = () => {
   // Education timeline data
   const education = [
     {
-      title: "Master of Computer Applications",
-      subtitle: "University of Delhi",
-      date: "2018 - 2021",
-      description: "Focused on advanced programming, system design, and data structures"
+      title: "MASTER IN COMPUTER APPLICATIONS",
+      subtitle: "Galgotias University ",
+      date: "2022 - 2024",
+      description: "Focused on Advanced programming, system design, and data structures and Data Analytics"
     },
     {
-      title: "Bachelor of Computer Applications",
-      subtitle: "University of Delhi",
-      date: "2015 - 2018",
-      description: "Foundation in programming languages, database management, and web development"
+      title: "BACHELOR IN COMPUTER APPLICATIONS",
+      subtitle: "BBD University",
+      date: "2019 - 2022",
+      description: "Foundation in programming languages, Networking, Cyber Sequrity, and web development"
     },
     {
       title: "Higher Secondary Education",
-      subtitle: "Delhi Public School",
-      date: "2013 - 2015",
-      description: "Computer Science, Mathematics, and Physics"
+      subtitle: "SVMIC ",
+      date: "2013 - 2018",
+      description: "Physics, Chemistry and Mathematics"
     }
   ];
 
   // Work experience timeline data
   const experience = [
     {
-      title: "Senior Full Stack Developer",
-      subtitle: "Tech Innovations Inc.",
-      date: "2021 - Present",
+      title: "Full Stack Developer",
+      subtitle: "Getsetdeployed (Remote)",
+      date: "Aug.2024 - Present",
       description: "Leading development of scalable web applications using modern technologies"
     },
     {
-      title: "Frontend Developer",
-      subtitle: "Digital Solutions Ltd.",
-      date: "2019 - 2021",
+      title: "Freelance Web Developer",
+      subtitle: "",
+      date: "July 2022 - Aug.2024",
       description: "Built responsive user interfaces with React, Next.js, and Tailwind CSS"
     },
     {
-      title: "Web Developer Intern",
-      subtitle: "CreativeTech Studios",
-      date: "2018 - 2019",
+      title: "Android Developer Intern",
+      subtitle: "Digipodium (Lucknow)",
+      date: "Jan 2022 - May 2019",
       description: "Assisted in developing and maintaining client websites and applications"
     }
   ];
