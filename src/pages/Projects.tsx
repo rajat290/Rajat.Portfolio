@@ -210,11 +210,11 @@ const ProjectDetailsModal = ({ isOpen, onClose, project }: ProjectDetailsModalPr
   );
 };
 
-const FloatingTechIcon = ({ icon, position }: { icon: string, position: any }) => {
+const FloatingTechIcon = ({ icon, position }: { icon: string, position: { top: number; left: number } }) => {
   return (
     <motion.div
       className="absolute text-white/10 z-0"
-      style={position}
+      style={{ top: Number(position.top), left: Number(position.left) }}
       animate={{
         y: [position.top, position.top + 40, position.top],
         x: [position.left, position.left + 20, position.left],
@@ -249,11 +249,12 @@ const ProjectsPage = () => {
   return (
     <div className="relative min-h-screen pt-16 pb-16">
       {/* Background floating tech icons */}
-      <FloatingTechIcon icon="⚛️" position={{ top: '15%', left: '5%' }} />
-      <FloatingTechIcon icon="🔷" position={{ top: '40%', left: '90%' }} />
-      <FloatingTechIcon icon="🅰️" position={{ top: '70%', left: '10%' }} />
-      <FloatingTechIcon icon="🟢" position={{ top: '20%', left: '80%' }} />
-      <FloatingTechIcon icon="🔵" position={{ top: '80%', left: '75%' }} />
+<FloatingTechIcon icon="⚛️" position={{ top: 15, left: 5 }} />
+<FloatingTechIcon icon="🔷" position={{ top: 40, left: 90 }} />
+<FloatingTechIcon icon="🅰️" position={{ top: 70, left: 10 }} />
+<FloatingTechIcon icon="🟢" position={{ top: 20, left: 80 }} />
+<FloatingTechIcon icon="🔵" position={{ top: 80, left: 75 }} />
+
       
       <div className="container mx-auto px-4 relative z-10">
         {/* Breadcrumb */}
