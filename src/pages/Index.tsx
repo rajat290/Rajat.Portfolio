@@ -123,8 +123,9 @@ const Index = () => {
         delay: 0.2
       }} className="max-w-4xl mx-auto mb-4">
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-4 leading-tight py-0">
-            Building Scalable Backends, 
-            <br className="py-0 px-0 mx-0" /> Crafting <span className="italic bg-gradient-to-r from-purple-400 via-pink-500 to-purple-500 text-transparent bg-clip-text">End-to-End Applications</span> & Deploying Seamless Solutions
+          I help founders turn ideas into seamless 
+            <br className="py-0 px-0 mx-0" /><span className="italic bg-gradient-to-r from-purple-400 via-pink-500 to-purple-500 text-transparent bg-clip-text">Digital Experience </span> &  Solutions
+
           </h1>
         </motion.div>
 
