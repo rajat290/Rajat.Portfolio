@@ -24,7 +24,7 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: "E-commerce Platform",
+    title: "E-commerce Platform for Clothing business",
     description: "A modern e-commerce platform with responsive design and Stripe integration.",
     longDescription: "A modern e-commerce platform with a responsive design, user authentication, product search and filtering, shopping cart, and checkout functionality. Built with React, Node.js, Express, and MongoDB, with Stripe integration for payments.",
     technologies: ["React", "Node.js", "Express", "MongoDB", "Stripe API"],
@@ -42,8 +42,8 @@ const projects: Project[] = [
     image: "https://images.unsplash.com/photo-1540350394557-8d14678e7f91?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1032&q=80"
   },
   {
-    title: "Portfolio Website",
-    description: "A minimalist portfolio website showcasing projects, skills, and experience.",
+    title: "Paddlelift.com",
+    description: "A Human resource provider company, Developed a minimalist portfolio website showcasing projects, Clients, and experience.",
     longDescription: "A minimalist portfolio website showcasing projects, skills, and experience. Features responsive design, animations, and contact form. Built with Next.js for optimal performance and SEO.",
     technologies: ["Next.js", "Framer Motion", "Tailwind CSS"],
     githubLink: "https://github.com",
@@ -51,7 +51,7 @@ const projects: Project[] = [
     image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1055&q=80"
   },
   {
-    title: "Weather Dashboard",
+    title: "Weather Application",
     description: "A weather dashboard that displays current weather conditions and forecasts.",
     longDescription: "A weather dashboard that displays current weather conditions and forecasts for multiple locations. Features interactive maps and charts, historical weather data comparisons, and custom alerts.",
     technologies: ["React", "Chart.js", "OpenWeather API", "Leaflet"],
@@ -60,7 +60,25 @@ const projects: Project[] = [
     image: "https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1065&q=80"
   },
   {
-    title: "Social Media Dashboard",
+    title: "Student ERP Dashboard",
+    description: "A dashboard for managing and analyzing social media accounts across platforms.",
+    longDescription: "A dashboard for managing and analyzing social media accounts across multiple platforms. Features analytics, content scheduling, and engagement tracking with visual representations of trends and user engagement.",
+    technologies: ["React", "Redux", "Node.js", "Express", "MongoDB"],
+    githubLink: "https://github.com",
+    liveLink: "https://demo-socialdashboard.example.com",
+    image: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80"
+  },
+  {
+    title: "Teachers ERP Dashboard",
+    description: "A dashboard for managing and analyzing social media accounts across platforms.",
+    longDescription: "A dashboard for managing and analyzing social media accounts across multiple platforms. Features analytics, content scheduling, and engagement tracking with visual representations of trends and user engagement.",
+    technologies: ["React", "Redux", "Node.js", "Express", "MongoDB"],
+    githubLink: "https://github.com",
+    liveLink: "https://demo-socialdashboard.example.com",
+    image: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80"
+  },
+  {
+    title: "Admin ERP Dashboard",
     description: "A dashboard for managing and analyzing social media accounts across platforms.",
     longDescription: "A dashboard for managing and analyzing social media accounts across multiple platforms. Features analytics, content scheduling, and engagement tracking with visual representations of trends and user engagement.",
     technologies: ["React", "Redux", "Node.js", "Express", "MongoDB"],
