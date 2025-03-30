@@ -77,7 +77,7 @@ const Services = () => {
         <ServiceCard
           icon={<School className="text-purple-400" size={24} />}
           title="Complete School/College Management Systems"
-          description="Comprehensive systems for educational institutions to manage students, staff, classes, and administrative tasks efficiently."
+          description="Comprehensive systems for educational institutions to manage students, staff, classes, fee, and administrative tasks efficiently."
           price="$3,000+"
           ctaText="Learn more"
           ctaLink="#contact"
