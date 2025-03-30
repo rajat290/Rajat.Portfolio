@@ -94,6 +94,24 @@ const projects: Project[] = [
     githubLink: "https://github.com",
     liveLink: "https://demo-recipes.example.com",
     image: "https://images.unsplash.com/photo-1505935428862-770b6f24f629?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1167&q=80"
+  },
+  {
+    title: "E-commerce Platform for Cake Business",
+    description: "A recipe application that allows users to browse, search, save, and share recipes.",
+    longDescription: "A recipe application that allows users to browse, search, save, and share recipes. Features user authentication, recipe categories, and a responsive design. Users can create shopping lists and meal plans based on selected recipes.",
+    technologies: ["React", "Firebase", "CSS Modules", "Spoonacular API"],
+    githubLink: "https://github.com",
+    liveLink: "https://demo-recipes.example.com",
+    image: "https://images.unsplash.com/photo-1505935428862-770b6f24f629?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1167&q=80"
+  },
+  {
+    title: "E-commerce Platform for Plants Selling",
+    description: "A recipe application that allows users to browse, search, save, and share recipes.",
+    longDescription: "A recipe application that allows users to browse, search, save, and share recipes. Features user authentication, recipe categories, and a responsive design. Users can create shopping lists and meal plans based on selected recipes.",
+    technologies: ["React", "Firebase", "CSS Modules", "Spoonacular API"],
+    githubLink: "https://github.com",
+    liveLink: "https://demo-recipes.example.com",
+    image: "https://images.unsplash.com/photo-1505935428862-770b6f24f629?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1167&q=80"
   }
 ];
 
