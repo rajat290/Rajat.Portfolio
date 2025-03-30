@@ -22,7 +22,7 @@ const Footer = () => {
                 className="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors">
                 <Github size={16} className="text-white/80" />
               </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" 
+              <a href="https://https://www.linkedin.com/in/rajat-singh-tomar-65727a185/" target="_blank" rel="noopener noreferrer" 
                 className="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors">
                 <Linkedin size={16} className="text-white/80" />
               </a>
@@ -101,7 +101,7 @@ const Footer = () => {
             © {new Date().getFullYear()} Rajat Singh Tomar. All rights reserved.
           </p>
           <p className="text-sm text-white/50 mt-2 sm:mt-0">
-            Designed & Developed with ❤️
+            Designed & Developed with ❤️ by Rajat Singh Tomar
           </p>
         </div>
       </div>
