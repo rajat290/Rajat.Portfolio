@@ -18,7 +18,7 @@ const Footer = () => {
               Building remarkable digital experiences through creative development and thoughtful design.
             </p>
             <div className="flex items-center space-x-4 pt-2">
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" 
+              <a href="https://github/rajat290.com" target="_blank" rel="noopener noreferrer" 
                 className="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors">
                 <Github size={16} className="text-white/80" />
               </a>
@@ -30,7 +30,7 @@ const Footer = () => {
                 className="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors">
                 <Twitter size={16} className="text-white/80" />
               </a>
-              <a href="mailto:hello@example.com" 
+              <a href="mailto:rajatsinghtomarofficial@gmail.com" 
                 className="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors">
                 <Mail size={16} className="text-white/80" />
               </a>
