@@ -51,6 +51,15 @@ const projects: Project[] = [
     image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1055&q=80"
   },
   {
+    title: "Getsetdeployed.com",
+    description: "A Web development, App development , marketing provider company, Developed a minimalist portfolio website showcasing projects, Clients, and experience.",
+    longDescription: "A minimalist portfolio website showcasing projects, skills, and experience. Features responsive design, animations, and contact form. Built with Next.js for optimal performance and SEO.",
+    technologies: ["Next.js", "Framer Motion", "Tailwind CSS"],
+    githubLink: "https://github.com",
+    liveLink: "https://demo-portfolio.example.com",
+    image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1055&q=80"
+  },
+  {
     title: "Weather Application",
     description: "A weather dashboard that displays current weather conditions and forecasts.",
     longDescription: "A weather dashboard that displays current weather conditions and forecasts for multiple locations. Features interactive maps and charts, historical weather data comparisons, and custom alerts.",
