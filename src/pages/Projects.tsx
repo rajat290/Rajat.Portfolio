@@ -96,6 +96,24 @@ const projects: Project[] = [
     image: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80"
   },
   {
+    title: "Fee Management System",
+    description: "A dashboard for managing and analyzing social media accounts across platforms.",
+    longDescription: "A dashboard for managing and analyzing social media accounts across multiple platforms. Features analytics, content scheduling, and engagement tracking with visual representations of trends and user engagement.",
+    technologies: ["React", "Redux", "Node.js", "Express", "MongoDB"],
+    githubLink: "https://github.com",
+    liveLink: "https://demo-socialdashboard.example.com",
+    image: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80"
+  },
+  {
+    title: "Admission Management System",
+    description: "A dashboard for managing and analyzing social media accounts across platforms.",
+    longDescription: "A dashboard for managing and analyzing social media accounts across multiple platforms. Features analytics, content scheduling, and engagement tracking with visual representations of trends and user engagement.",
+    technologies: ["React", "Redux", "Node.js", "Express", "MongoDB"],
+    githubLink: "https://github.com",
+    liveLink: "https://demo-socialdashboard.example.com",
+    image: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80"
+  },
+  {
     title: "Recipe Application",
     description: "A recipe application that allows users to browse, search, save, and share recipes.",
     longDescription: "A recipe application that allows users to browse, search, save, and share recipes. Features user authentication, recipe categories, and a responsive design. Users can create shopping lists and meal plans based on selected recipes.",
