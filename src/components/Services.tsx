@@ -76,7 +76,7 @@ const Services = () => {
         
         <ServiceCard
           icon={<School className="text-purple-400" size={24} />}
-          title="School Management Systems"
+          title="Complete School/College Management Systems"
           description="Comprehensive systems for educational institutions to manage students, staff, classes, and administrative tasks efficiently."
           price="$3,000+"
           ctaText="Learn more"
@@ -85,8 +85,8 @@ const Services = () => {
         
         <ServiceCard
           icon={<Database className="text-purple-400" size={24} />}
-          title="Database Design & Optimization"
-          description="Expert database architecture planning, implementation, and optimization for scalable, high-performance applications."
+          title="Complete Restaurant & Hotel Management Systems"
+          description="Reservation Management, Order Processing, Customer Relationship Management, Reporting and Analytics"
           price="$1,000+"
           ctaText="Get a quote"
           ctaLink="#contact"
