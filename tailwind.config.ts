@@ -22,6 +22,7 @@ export default {
 			fontFamily: {
 				sans: ['Inter', 'sans-serif'],
 				mono: ['Roboto Mono', 'monospace'],
+				signature: ['"Alex Brush"', 'cursive'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',

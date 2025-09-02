@@ -29,9 +29,9 @@ const Navbar = ({ isScrolled, toggleMenu, isMenuOpen }: NavbarProps) => {
           isScrolled ? 'shadow-lg' : ''
         }`}>
           <div className="flex justify-between items-center">
-            <NavLink to="/" className="text-2xl font-medium tracking-tight text-white hover:opacity-80 transition-opacity">
-              AB
-            </NavLink>
+           <NavLink to="/" className="text-2xl font-signature tracking-tight text-pink-600 hover:opacity-80 transition-opacity">
+  Rajat Singh
+</NavLink>
             
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-8">
