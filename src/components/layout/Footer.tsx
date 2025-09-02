@@ -12,8 +12,9 @@ const Footer = () => {
         {/* Top Section with Links */}
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 py-12">
           {/* Brand Column */}
+
           <div className="space-y-4">
-            <h3 className="text-xl font-bold text-white">Rajat Singh Tomar</h3>
+            <h3 className="text-2xl font-signature tracking-tight text-pink-600 hover:opacity-80 transition-opacity">Rajat Singh Tomar</h3>
             <p className="text-sm text-white/60 max-w-xs">
               Building remarkable digital experiences through creative development and thoughtful design.
             </p>
@@ -96,7 +97,7 @@ const Footer = () => {
         </div>
         
         {/* Bottom Credits */}
-        <div className="py-6 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center">
+        <div className="text-2xl font-signature tracking-tight text-pink-600 hover:opacity-80 transition-opacity">
           <p className="text-sm text-white/50">
             © {new Date().getFullYear()} Rajat Singh Tomar. All rights reserved.
           </p>
