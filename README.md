@@ -29,5 +29,7 @@ To get started with this project, follow these steps:
 3. Install the necessary dependencies.
 4. Start the development server.
 
+
+at the end you will find all my details in the way of a website 
 ## License
 This project is licensed under the [insert license type here, e.g., MIT License].
