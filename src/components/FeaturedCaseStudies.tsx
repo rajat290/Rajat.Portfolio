@@ -25,17 +25,17 @@ const DRAG_DISTANCE_THRESHOLD = 80;
 
 const projects = [
   {
-    title: "Next Ventures",
+    title: "PaddleLift",
     description:
-      "A online space for entrepreneurs to pitch ideas, explore others, and gain exposure with clean design.",
+      "A Noida Based HR Company Who provides resources to another companies and post their jobs on their portal.",
     longDescription:
-      "Developed a platform for virtual pitch competitions using Next.js 15, enabling smooth idea sharing and exploration with optimal performance.",
+      "Developed a user-friendly website and job portal platform where the company can showcase its statistics, presence, portfolio, industries served, and contact details. The integrated job portal with RBAC authentication that allows them to list open positions and share new job openings directly with potential candidates. and also accept applications from candidates and their resumes.",
     images: [
-      "/dummy/next1.png",
-      "/dummy/next2.png",
-      "/dummy/next3.png",
-      "/dummy/next4.png",
-      "/dummy/next5.png",
+      "src/Img/PaddleLift/Hero.png",
+      "src/Img/PaddleLift/Hero2.png",
+      "src/Img/PaddleLift/jobPortal.png",
+      "src/Img/PaddleLift/JobOpening.png",
+      "src/Img/PaddleLift/jobApply.png",
     ],
     points: [
       "Leveraged Partial Prerendering and After for faster loading.",
@@ -44,61 +44,50 @@ const projects = [
     ],
     tech: [
       { name: "Next.js", icon: "N" },
-      { name: "React", icon: "⚛️" },
+      { name: "Redux", icon: "⚛️" },
       { name: "Tailwind CSS", icon: "💨" },
       { name: "TypeScript", icon: "TS" },
-      { name: "Framer Motion", icon: "🔄" },
+      { name: "Node.JS", icon: "🟢" },
+      { name: "Express.JS", icon: "🚀" },
+      { name: "PostgreSQL", icon: "🐘" },
+      { name: "Prisma", icon: "▲" },
+    ],
+    links: [
+      { name: "Website", url: "https://paddlelift.com/" },
+      { name: "Job Portal", url: "https://paddlelift.com/jobs" },
     ],
   },
 
   {
-    title: "CineX — Movie Booking App",
+    title: "CommunityLink — CakePHP Volunteer Platform",
     description:
-      "Cinex is a full-featured movie booking platform with responsive design.",
+      "A comprehensive volunteer management platform developed for One of my Australian Client to run a non-profit organization to connect community partners with volunteers.",
     longDescription:
-      "Cinex is a full-featured movie booking platform that allows users to browse movies with advanced filtering, book seats, make secure payments via Razorpay, and receive confirmations via email.",
+      "CommunityLink is a robust web application designed for non-profit organizations to manage volunteer programs efficiently. Built with CakePHP 5, it features a complete CRUD system, advanced search functionality using QueryBuilder, secure file uploads, and a comprehensive dashboard with business intelligence insights. The application follows Australian standards with proper timezone configuration and professional branding.",
     images: [
-      "/dummy/cinex1.png",
-      "/dummy/cinex2.png",
-      "/dummy/cinex3.png",
-      "/dummy/cinex4.png",
-      "/dummy/cinex5.png",
+      "src/Img/CommunityLInk/Screenshot 2025-11-15 122237.png",
+      "src/Img/CommunityLInk/Screenshot 2025-11-15 152743.png",
+      "src/Img/CommunityLInk/Screenshot 2025-11-15 152812.png",
+      "src/Img/CommunityLInk/Screenshot 2025-11-15 152833.png",
+      "src/Img/CommunityLInk/Screenshot 2025-11-15 152855.png",
     ],
     points: [
-      "Real-time seat booking with optimized backend performance.",
-      "Secure online payments integrated using Razorpay.",
-      "Automated email notifications using Nodemailer.",
+      "Implemented MVC architecture with proper separation of concerns.",
+      "Developed server-side search using CakePHP QueryBuilder with multi-field filtering.",
+      "Created secure file upload system for document management with validation.",
+      "Built responsive UI with Bootstrap 5 and custom CommunityLink branding.",
+      "Configured Australian localization with proper timezone and date formatting.",
+      "Designed relational database schema with 8 interconnected tables.",
     ],
     tech: [
-      { name: "Node.js", icon: "🟢" },
-      { name: "Express.js", icon: "🚂" },
-      { name: "MongoDB", icon: "🍃" },
-      { name: "Razorpay", icon: "💳" },
-    ],
-  },
-
-  {
-    title: "Tech Learning Portal",
-    description:
-      "A sleek online portal for students to access tutorials, quizzes, and structured learning paths.",
-    longDescription:
-      "Created an adaptive learning UI with personalized progress tracking and interactive components.",
-    images: [
-      "/dummy/learn1.png",
-      "/dummy/learn2.png",
-      "/dummy/learn3.png",
-      "/dummy/learn4.png",
-      "/dummy/learn5.png",
-    ],
-    points: [
-      "Gamified UI for better engagement.",
-      "Fast, SEO-friendly performance.",
-      "Clean modular design system.",
-    ],
-    tech: [
-      { name: "Next.js", icon: "N" },
-      { name: "Tailwind", icon: "💨" },
-      { name: "ShadCN UI", icon: "⚙️" },
+      { name: "CakePHP 5", icon: "🍰" },
+      { name: "PHP 8.2", icon: "🐘" },
+      { name: "MySQL", icon: "🗄️" },
+      { name: "Bootstrap 5", icon: "🅱️" },
+      { name: "JavaScript", icon: "📜" },
+      { name: "jQuery", icon: "⚡" },
+      { name: "Composer", icon: "📦" },
+      { name: "Apache", icon: "🌐" },
     ],
   },
 ];
@@ -119,7 +108,6 @@ const FeaturedCaseStudies = () => {
 
   const project = projects[current];
 
-  // ref to inner swiper so we can control it if needed (optional)
   const innerSwiperRef = useRef(null);
 
   return (
@@ -138,9 +126,7 @@ const FeaturedCaseStudies = () => {
         </h2>
       </div>
 
-      {/* WRAPPER */}
       <div className="relative">
-        {/* OUTER ARROWS */}
         <button
           onClick={prevSlide}
           aria-label="Previous project"
@@ -157,7 +143,6 @@ const FeaturedCaseStudies = () => {
           <ArrowRight className="text-white" />
         </button>
 
-        {/* OUTER SLIDE (Framer Motion) */}
         <AnimatePresence mode="wait">
           <motion.div
             key={current}
@@ -171,10 +156,9 @@ const FeaturedCaseStudies = () => {
             onDragEnd={handleDragEnd}
             className="cursor-grab active:cursor-grabbing grid grid-cols-1 lg:grid-cols-12 gap-8"
           >
-            {/* LEFT: IMAGE CAROUSEL (Swiper) */}
+            {/* LEFT: IMAGE SLIDES */}
             <div className="lg:col-span-7">
               <div className="rounded-2xl overflow-hidden relative">
-                {/* gradient border behind card */}
                 <div className="absolute inset-0 rounded-2xl p-[1px] bg-gradient-to-r from-purple-500/40 via-pink-500/40 to-purple-600/40 z-[-1]" />
 
                 <div className="p-6 md:p-10 bg-gradient-to-br from-pink-900/90 via-purple-900/90 to-pink-900/90 border border-purple-500/20 rounded-2xl">
@@ -184,45 +168,33 @@ const FeaturedCaseStudies = () => {
 
                   <p className="text-gray-300 mb-6">{project.description}</p>
 
-                  {/* IMAGE CAROUSEL BOX */}
                   <div className="relative rounded-xl overflow-hidden shadow-2xl">
-                    {/* gradient fade edges (left + right) */}
-                    <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-pink-900/80 to-transparent z-20" />
-                    <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-pink-900/80 to-transparent z-20" />
-
                     <Swiper
-                      key={current} // remount on outer change so autoplay resets
+                      key={current}
                       modules={[Autoplay, Navigation, Pagination]}
                       autoplay={{
                         delay: 1800,
                         disableOnInteraction: false,
                         pauseOnMouseEnter: true,
                       }}
-                      loop={false} // we want to detect reachEnd
+                      loop={false}
                       navigation={{
                         nextEl: `.inner-next-${current}`,
                         prevEl: `.inner-prev-${current}`,
                       }}
                       pagination={{ clickable: true }}
-                      onSwiper={(swiper) => {
-                        innerSwiperRef.current = swiper;
-                      }}
+                      onSwiper={(swiper) => (innerSwiperRef.current = swiper)}
                       onReachEnd={() => {
-                        // when inner reaches the last slide, move outer forward
-                        // small timeout to let the user see the last slide briefly
-                        setTimeout(() => {
-                          nextSlide();
-                        }, 600);
+                        setTimeout(() => nextSlide(), 600);
                       }}
                       className="w-full"
                     >
                       {project.images.map((src, idx) => (
                         <SwiperSlide key={idx}>
                           <div className="relative w-full h-[320px] md:h-[420px]">
-                            {/* Hover zoom via Framer Motion */}
                             <motion.img
                               src={src}
-                              alt={`${project.title} screenshot ${idx + 1}`}
+                              alt=""
                               className="object-cover w-full h-full rounded-xl"
                               whileHover={{ scale: 1.03 }}
                               transition={{ duration: 0.4 }}
@@ -231,16 +203,15 @@ const FeaturedCaseStudies = () => {
                         </SwiperSlide>
                       ))}
 
-                      {/* Inner navigation arrows (small, inside image) */}
                       <div
-                        className={`inner-prev-${current} absolute left-3 top-1/2 -translate-y-1/2 z-30 bg-black/40 p-2 rounded-full transform transition hover:bg-black/60`}
+                        className={`inner-prev-${current} absolute left-3 top-1/2 -translate-y-1/2 z-30 bg-black/40 p-2 rounded-full hover:bg-black/60`}
                         style={{ display: "flex" }}
                       >
                         <ArrowRight className="rotate-180 text-white" size={16} />
                       </div>
 
                       <div
-                        className={`inner-next-${current} absolute right-3 top-1/2 -translate-y-1/2 z-30 bg-black/40 p-2 rounded-full transform transition hover:bg-black/60`}
+                        className={`inner-next-${current} absolute right-3 top-1/2 -translate-y-1/2 z-30 bg-black/40 p-2 rounded-full hover:bg-black/60`}
                         style={{ display: "flex" }}
                       >
                         <ArrowRight className="text-white" size={16} />
@@ -251,7 +222,7 @@ const FeaturedCaseStudies = () => {
               </div>
             </div>
 
-            {/* RIGHT: DETAILS */}
+            {/* RIGHT SIDE */}
             <div className="lg:col-span-5 flex flex-col justify-center">
               <div className="flex items-center gap-3 mb-5">
                 <span className="bg-pink-500 p-1 rounded-md">
@@ -262,7 +233,6 @@ const FeaturedCaseStudies = () => {
 
               <p className="text-gray-300 mb-8">{project.longDescription}</p>
 
-              {/* POINTS */}
               <div className="space-y-4 mb-10">
                 {(project.points || []).map((point, index) => (
                   <div key={index} className="flex items-start gap-3">
@@ -273,7 +243,7 @@ const FeaturedCaseStudies = () => {
               </div>
 
               {/* TECH STACK */}
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 mb-8">
                 {(project.tech || []).map((tech, index) => (
                   <motion.span
                     key={index}
@@ -285,11 +255,42 @@ const FeaturedCaseStudies = () => {
                   </motion.span>
                 ))}
               </div>
+
+              {/* ⭐⭐⭐ LINKS SECTION — NEW ⭐⭐⭐ */}
+              {project.links && project.links.length > 0 && (
+                <div className="mt-4 space-y-3">
+                  <h4 className="text-lg font-semibold text-white mb-2">
+                    Project Links
+                  </h4>
+
+                  <div className="flex flex-wrap gap-3">
+                    {project.links.map((link, index) => (
+                      <motion.a
+                        key={index}
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.07, x: 4 }}
+                        whileTap={{ scale: 0.97 }}
+                        className="flex items-center gap-2 px-4 py-2 rounded-lg 
+                        bg-gradient-to-r from-pink-600/40 via-purple-600/40 to-pink-600/40
+                        border border-pink-500/40
+                        text-pink-200 font-medium
+                        backdrop-blur-md shadow-md
+                        hover:shadow-pink-500/40 transition"
+                      >
+                        {link.name}
+                        <ArrowRight size={16} className="text-pink-300" />
+                      </motion.a>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </motion.div>
         </AnimatePresence>
 
-        {/* OUTER PAGINATION */}
+        {/* PAGINATION */}
         <div className="flex justify-center mt-10 gap-3">
           {projects.map((_, index) => (
             <button
