@@ -43,7 +43,7 @@ const About = () => {
           animate="visible"
           className="flex flex-col space-y-6"
         >
-          <div className="w-full h-80 md:h-96 overflow-hidden rounded-xl border border-gray-800 relative">
+          <div className="w-80 h-Full md:h-96 overflow-hidden rounded-xl border border-gray-800 relative">
             <Image 
               src="https://images.unsplash.com/photo-1487017159836-4e23ece2e4cf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" 
               alt="Professional portrait" 
@@ -53,7 +53,7 @@ const About = () => {
           </div>
           
           <div className="flex flex-wrap gap-3 mt-4">
-            {["Full Stack Developer", "UI/UX Designer", "Problem Solver", "Coffee Lover"].map((tag, index) => (
+            {["#FullStackDeveloper",  "#FreeLanceDeveloper", "#OpentoWorkwithWorldwideClients","#UI/UXDesigner", "#ProblemSolver",].map((tag, index) => (
               <span 
                 key={index} 
                 className="bg-secondary/70 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium text-white/80"

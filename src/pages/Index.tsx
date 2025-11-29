@@ -52,13 +52,13 @@ const Index = () => {
     document.body.removeChild(link);
   };
   return <div className="min-h-screen relative overflow-hidden">
-      {/* Background Effects */}
-      <div className="absolute inset-0 bg-[#1A1F2C] overflow-hidden">
-        {/* Radial gradient glow */}
-        <div className="absolute w-full h-full bg-[radial-gradient(ellipse_at_top,_#2A2C3E_0%,_transparent_70%)]"></div>
-        
-        {/* Light streak 1 */}
-        <motion.div initial={{
+    {/* Background Effects */}
+    <div className="absolute inset-0 bg-[#1A1F2C] overflow-hidden">
+      {/* Radial gradient glow */}
+      <div className="absolute w-full h-full bg-[radial-gradient(ellipse_at_top,_#2A2C3E_0%,_transparent_70%)]"></div>
+
+      {/* Light streak 1 */}
+      <motion.div initial={{
         opacity: 0
       }} animate={{
         opacity: 0.3
@@ -66,9 +66,9 @@ const Index = () => {
         duration: 2,
         delay: 0.5
       }} className="absolute -top-20 -left-20 w-80 h-[500px] bg-purple-700/20 blur-[80px] rounded-full transform -rotate-45"></motion.div>
-        
-        {/* Light streak 2 */}
-        <motion.div initial={{
+
+      {/* Light streak 2 */}
+      <motion.div initial={{
         opacity: 0
       }} animate={{
         opacity: 0.2
@@ -76,9 +76,9 @@ const Index = () => {
         duration: 2,
         delay: 0.8
       }} className="absolute top-40 right-0 w-96 h-[600px] bg-indigo-700/20 blur-[100px] rounded-full transform rotate-45"></motion.div>
-        
-        {/* Bottom curve */}
-        <motion.div initial={{
+
+      {/* Bottom curve */}
+      <motion.div initial={{
         opacity: 0
       }} animate={{
         opacity: 1
@@ -86,16 +86,16 @@ const Index = () => {
         duration: 1.5,
         delay: 2
       }} className="absolute bottom-0 left-0 right-0 h-[1px] bg-white/10">
-          <svg className="w-full" viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0 20C0 20 345.5 -40 720 20C1094.5 80 1440 20 1440 20V100H0V20Z" fill="#1A1F2C" fillOpacity="0.4" />
-          </svg>
-        </motion.div>
-      </div>
+        <svg className="w-full" viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 20C0 20 345.5 -40 720 20C1094.5 80 1440 20 1440 20V100H0V20Z" fill="#1A1F2C" fillOpacity="0.4" />
+        </svg>
+      </motion.div>
+    </div>
 
-      {/* Hero Section */}
-      <div className="relative flex flex-col items-center justify-center min-h-[90vh] text-center px-4 z-10 pt-20 py-[64px]">
-        {/* "New" Badge */}
-        <motion.div initial={{
+    {/* Hero Section */}
+    <div className="relative flex flex-col items-center justify-center min-h-[90vh] text-center px-4 z-10 pt-20 py-[64px]">
+      {/* "New" Badge */}
+      <motion.div initial={{
         opacity: 0,
         y: 20
       }} animate={{
@@ -104,15 +104,15 @@ const Index = () => {
       }} transition={{
         duration: 0.6
       }} className="mb-10">
-          <Link to="/projects" className="inline-flex items-center gap-2 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all duration-300 mx-0 px-[20px] my-[21px] py-[8px]">
-            <span className="text-xs font-semibold bg-gradient-to-r from-purple-400 to-pink-500 text-white px-2 py-0.5 rounded-full">New</span>
-            <span className="text-sm text-white/90">See my latest projects</span>
-            <ArrowRight size={14} className="text-white/70" />
-          </Link>
-        </motion.div>
+        <Link to="/projects" className="inline-flex items-center gap-2 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all duration-300 mx-0 px-[20px] my-[21px] py-[8px]">
+          <span className="text-xs font-semibold bg-gradient-to-r from-purple-400 to-pink-500 text-white px-2 py-0.5 rounded-full">New</span>
+          <span className="text-sm text-white/90">See my latest projects</span>
+          <ArrowRight size={14} className="text-white/70" />
+        </Link>
+      </motion.div>
 
-        {/* Main Heading */}
-        <motion.div initial={{
+      {/* Main Heading */}
+      <motion.div initial={{
         opacity: 0,
         y: 20
       }} animate={{
@@ -122,15 +122,15 @@ const Index = () => {
         duration: 0.8,
         delay: 0.2
       }} className="max-w-4xl mx-auto mb-4">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-4 leading-tight py-0">
-          I help founders turn ideas into seamless 
-            <br className="py-0 px-0 mx-0" /><span className="italic bg-gradient-to-r from-purple-400 via-pink-500 to-purple-500 text-transparent bg-clip-text">Digital Experience </span> &  Solutions
+        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-4 leading-tight py-0">
+          I help founders turn ideas into seamless
+          <br className="py-0 px-0 mx-0" /><span className="italic bg-gradient-to-r from-purple-400 via-pink-500 to-purple-500 text-transparent bg-clip-text">Digital Experience </span> &  Solutions
 
-          </h1>
-        </motion.div>
+        </h1>
+      </motion.div>
 
-        {/* Developer Info - Updated layout */}
-        <motion.div initial={{
+      {/* Developer Info - Updated layout */}
+      <motion.div initial={{
         opacity: 0,
         y: 20
       }} animate={{
@@ -140,28 +140,28 @@ const Index = () => {
         duration: 0.8,
         delay: 0.4
       }} className="flex flex-col items-center gap-2 mb-12">
-          {/* Name with profile image */}
-          <div className="flex items-center gap-2 mb-1">
-            <span className="text-xl text-white/90">Hello, I'm Rajat Singh Tomar</span>
-            <div className="w-8 h-8 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 p-0.5">
-              <div className="w-full h-full rounded-full overflow-hidden">
-                <img alt="Profile" className="w-full h-full object-cover" src="/lovable-uploads/75afff90-7862-469d-a238-8b020403cf73.jpg" />
-              </div>
+        {/* Name with profile image */}
+        <div className="flex items-center gap-2 mb-1">
+          <span className="text-xl text-white/90">Hello, I'm Rajat Singh Tomar</span>
+          <div className="w-8 h-8 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 p-0.5">
+            <div className="w-full h-full rounded-full overflow-hidden">
+              <img alt="Profile" className="w-full h-full object-cover" src="/lovable-uploads/75afff90-7862-469d-a238-8b020403cf73.jpg" />
             </div>
           </div>
-          
-          {/* Position with typing animation on new line */}
-          <div className="flex items-center">
-            <span className="text-xl text-white/90">a </span>
-            <span className="text-xl text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 font-semibold ml-1">
-              {displayText}
-              <span className="animate-pulse">|</span>
-            </span>
-          </div>
-        </motion.div>
+        </div>
 
-        {/* CTA Buttons */}
-        <motion.div initial={{
+        {/* Position with typing animation on new line */}
+        <div className="flex items-center">
+          <span className="text-xl text-white/90">a </span>
+          <span className="text-xl text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 font-semibold ml-1">
+            {displayText}
+            <span className="animate-pulse">|</span>
+          </span>
+        </div>
+      </motion.div>
+
+      {/* CTA Buttons */}
+      <motion.div initial={{
         opacity: 0,
         y: 20
       }} animate={{
@@ -171,52 +171,54 @@ const Index = () => {
         duration: 0.8,
         delay: 0.6
       }} className="flex flex-col sm:flex-row gap-4 items-center">
-          <motion.a href="#contact" whileHover={{
+        <motion.a href="#contact" whileHover={{
           scale: 1.05,
           boxShadow: "0 0 20px rgba(155, 135, 245, 0.3)"
         }} whileTap={{
           scale: 0.98
         }} className="flex items-center gap-2 px-8 py-3 rounded-full bg-gradient-to-r from-purple-500/20 to-pink-500/20 backdrop-blur-sm border border-white/10 hover:from-purple-500/30 hover:to-pink-500/30 transition-all duration-300">
-            <span className="text-white font-medium">Let's Connect</span>
-            <div className="w-6 h-6 flex items-center justify-center rounded-full bg-white/10">
-              <ArrowRight size={14} className="text-white" />
-            </div>
-          </motion.a>
-          
-          <motion.button onClick={handleDownloadResume} whileHover={{
+          <span className="text-white font-medium">Let's Connect</span>
+          <div className="w-6 h-6 flex items-center justify-center rounded-full bg-white/10">
+            <ArrowRight size={14} className="text-white" />
+          </div>
+        </motion.a>
+
+        <motion.button onClick={handleDownloadResume} whileHover={{
           scale: 1.05
         }} whileTap={{
           scale: 0.98
         }} className="flex items-center gap-2 px-6 py-3 text-white/90 hover:text-white transition-colors duration-300 bg-white/5 rounded-full border border-white/10">
-            <Download size={18} />
-            <span>My Resume</span>
-          </motion.button>
-        </motion.div>
-      </div>
-      
-      {/* Study Journey & Experience Section */}
-      <StudyJourneyExperience />
-      
-      {/* Services Section - New addition */}
-      <div className="relative z-10">
-        <Services />
-      </div>
-      
-      {/* Featured Case Studies Section */}
-      <div className="relative z-10">
-        <FeaturedCaseStudies />
-      </div>
-      
-      {/* Tech Stack Section */}
-      <div className="relative z-10">
-        <TechStack />
-      </div>
+          <Download size={18} />
+          <span>My Resume</span>
+        </motion.button>
+      </motion.div>
+    </div>
 
-      {/* Contact Form Section */}
-      <div className="relative z-10">
-        <ContactForm />
-      </div>
-    </div>;
+    {/* Featured Case Studies Section */}
+    <div className="relative z-10">
+      <FeaturedCaseStudies />
+    </div>
+
+
+    {/* Services Section - New addition */}
+    <div className="relative z-10">
+      <Services />
+    </div>
+
+    {/* Tech Stack Section */}
+    <div className="relative z-10">
+      <TechStack />
+    </div>
+
+    {/* Study Journey & Experience Section */}
+    <div className="relative z-10">
+      <StudyJourneyExperience />
+    </div>
+    {/* Contact Form Section */}
+    <div className="relative z-10">
+      <ContactForm />
+    </div>
+  </div>;
 };
 
 export default Index;
