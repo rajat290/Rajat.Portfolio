@@ -19,69 +19,67 @@ const Navbar = ({ isScrolled, toggleMenu, isMenuOpen }: NavbarProps) => {
   };
 
   return (
-    <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'py-3' : 'py-5'
-      }`}
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'py-3' : 'py-5'
+        }`}
     >
       <div className="container mx-auto px-4">
-        <div className={`mx-auto max-w-5xl backdrop-blur-md bg-black/20 border border-white/5 rounded-full px-5 py-3 transition-all duration-300 ${
-          isScrolled ? 'shadow-lg' : ''
-        }`}>
+        <div className={`mx-auto max-w-5xl backdrop-blur-md bg-black/20 border border-white/5 rounded-full px-5 py-3 transition-all duration-300 ${isScrolled ? 'shadow-lg' : ''
+          }`}>
           <div className="flex justify-between items-center">
-           <NavLink to="/" className="text-2xl font-signature tracking-tight text-white-600 hover:opacity-80 transition-opacity">
-  Rajat Singh
-</NavLink>
-            
+            <NavLink to="/" className="text-2xl font-signature tracking-tight text-white-600 hover:opacity-80 transition-opacity">
+              Rajat Singh
+            </NavLink>
+
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-8">
-              <NavLink 
-                to="/" 
-                className={({ isActive }) => 
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
                   `text-sm font-medium transition-colors duration-300 ${isActive ? 'text-white' : 'text-white/70 hover:text-white'}`
                 }
               >
                 Home
               </NavLink>
-              <NavLink 
-                to="/projects" 
-                className={({ isActive }) => 
+              <NavLink
+                to="/projects"
+                className={({ isActive }) =>
                   `text-sm font-medium transition-colors duration-300 ${isActive ? 'text-white' : 'text-white/70 hover:text-white'}`
                 }
               >
-                Work
+                Projects
               </NavLink>
-              <NavLink 
-                to="/about" 
-                className={({ isActive }) => 
+              <NavLink
+                to="/about"
+                className={({ isActive }) =>
                   `text-sm font-medium transition-colors duration-300 ${isActive ? 'text-white' : 'text-white/70 hover:text-white'}`
                 }
               >
                 About
               </NavLink>
-              <NavLink 
-                to="#blog" 
+              <NavLink
+                to="#blog"
                 className="text-sm font-medium text-white/70 hover:text-white transition-colors duration-300"
               >
                 Blog
               </NavLink>
-              <button 
+              <button
                 onClick={handleServiceClick}
                 className="text-sm font-medium text-white/70 hover:text-white transition-colors duration-300 cursor-pointer"
               >
                 Services
               </button>
 
-              <NavLink 
-                to="#contact" 
+              <NavLink
+                to="#contact"
                 className="text-sm font-medium bg-white/10 hover:bg-white/15 px-4 py-2 rounded-full transition-colors duration-300"
               >
                 Book a Call
               </NavLink>
             </nav>
-            
+
             {/* Mobile Menu Button */}
-            <button 
+            <button
               className="md:hidden text-white/80 hover:text-white transition-colors"
               onClick={toggleMenu}
               aria-label={isMenuOpen ? "Close menu" : "Open menu"}
