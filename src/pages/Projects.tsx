@@ -24,52 +24,52 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: "E-commerce Platform",
+    title: "Cinex - Movie ticket booking App",
     description: "A modern e-commerce platform with responsive design and Stripe integration.",
     longDescription: "A modern e-commerce platform with a responsive design, user authentication, product search and filtering, shopping cart, and checkout functionality. Built with React, Node.js, Express, and MongoDB, with Stripe integration for payments.",
     technologies: ["React", "Node.js", "Express", "MongoDB", "Stripe API"],
     githubLink: "https://github.com",
     liveLink: "https://demo-ecommerce.example.com",
-    image: "https://images.unsplash.com/photo-1603302576837-37561b2e2302?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1168&q=80"
+    image: "src/Img/Cinex/image.png"
   },
   {
-    title: "Task Management App",
+    title: "GetSchool - School Management System",
     description: "A full-stack task management application with drag-and-drop interface.",
     longDescription: "A full-stack task management application with drag-and-drop interface, user authentication, task categorization, and real-time updates. Features include task prioritization, due dates, and team collaboration tools.",
     technologies: ["React", "TypeScript", "Firebase", "Tailwind CSS"],
     githubLink: "https://github.com",
     liveLink: "https://demo-taskmanager.example.com",
-    image: "https://images.unsplash.com/photo-1540350394557-8d14678e7f91?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1032&q=80"
+    image: "src/Img/localhost_5173_ copy.png"
   },
   {
-    title: "Portfolio Website",
+    title: "GetLearn - Online Learning Platform",
     description: "A minimalist portfolio website showcasing projects, skills, and experience.",
     longDescription: "A minimalist portfolio website showcasing projects, skills, and experience. Features responsive design, animations, and contact form. Built with Next.js for optimal performance and SEO.",
     technologies: ["Next.js", "Framer Motion", "Tailwind CSS"],
     githubLink: "https://github.com",
     liveLink: "https://demo-portfolio.example.com",
-    image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1055&q=80"
+    image: "src/Img/Screenshot 2025-09-03 134309.png"
   },
   {
-    title: "Weather Dashboard",
+    title: "GetPay - Payment Receiving App",
     description: "A weather dashboard that displays current weather conditions and forecasts.",
     longDescription: "A weather dashboard that displays current weather conditions and forecasts for multiple locations. Features interactive maps and charts, historical weather data comparisons, and custom alerts.",
     technologies: ["React", "Chart.js", "OpenWeather API", "Leaflet"],
     githubLink: "https://github.com",
     liveLink: "https://demo-weather.example.com",
-    image: "https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1065&q=80"
+    image: "src/Img/image.png"
   },
   {
-    title: "Social Media Dashboard",
+    title: "FleetLink - Vehicle Booking System",
     description: "A dashboard for managing and analyzing social media accounts across platforms.",
     longDescription: "A dashboard for managing and analyzing social media accounts across multiple platforms. Features analytics, content scheduling, and engagement tracking with visual representations of trends and user engagement.",
     technologies: ["React", "Redux", "Node.js", "Express", "MongoDB"],
     githubLink: "https://github.com",
     liveLink: "https://demo-socialdashboard.example.com",
-    image: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80"
+    image: "src/Img/image copy.png"
   },
   {
-    title: "Recipe Application",
+    title: "RajatTomar's_Recipes",
     description: "A recipe application that allows users to browse, search, save, and share recipes.",
     longDescription: "A recipe application that allows users to browse, search, save, and share recipes. Features user authentication, recipe categories, and a responsive design. Users can create shopping lists and meal plans based on selected recipes.",
     technologies: ["React", "Firebase", "CSS Modules", "Spoonacular API"],
