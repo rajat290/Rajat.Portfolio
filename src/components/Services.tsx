@@ -59,16 +59,16 @@ const Services = () => {
         <ServiceCard
           icon={<Globe className="text-purple-400" size={24} />}
           title="Custom Website Development"
-          description="Bespoke responsive websites built with modern frameworks like React and Next.js, optimized for performance and user experience."
-          price="$1,200+"
+          description="Responsive websites built with modern frameworks and as Client Requirements, optimized for performance and user experience."
+          price="$25/Hours"
           ctaText="Get started"
           ctaLink="#contact"
         />
         
         <ServiceCard
           icon={<Code className="text-purple-400" size={24} />}
-          title="MERN Stack Applications"
-          description="Full-stack web applications built with MongoDB, Express, React, and Node.js, perfect for complex interactive projects."
+          title="Complete Web/Mobile Applications"
+          description="Full-stack web applications built with client requirements with a focus on performance,and dedicated Android and iOS Application perfect for complex interactive growth incentive businesses."
           price="$2,500+"
           ctaText="Discuss your project"
           ctaLink="#contact"
@@ -76,8 +76,8 @@ const Services = () => {
         
         <ServiceCard
           icon={<School className="text-purple-400" size={24} />}
-          title="Complete School & College Management Systems"
-          description="Comprehensive systems for educational institutions to manage students, staff, classes, fee, and administrative tasks efficiently."
+          title="Complete Management Systems for Any Industries "
+          description="Comprehensive Management systems for Business to manage students, staff,worker, inventory, classes, fee, and administrative tasks and many more things efficiently."
           price="$3,000+"
           ctaText="Learn more"
           ctaLink="#contact"
