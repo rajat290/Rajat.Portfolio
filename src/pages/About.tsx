@@ -8,6 +8,19 @@ import TechStack from "@/components/TechStack";
 import Breadcrumb from "@/components/Breadcrumb";
 
 const About = () => {
+  // Fetch about data from API
+  const { data: aboutData = [], isLoading, error } = useQuery({
+    queryKey: ['about'],
+    queryFn: fetchAboutData,
+    staleTime: 5 * 60 * 1000, // 5 minutes
+  });
+
+  // Separate about sections
+  const heroSection = aboutData.find((item: any) => item.section === 'hero');
+  const bioSection = aboutData.find((item: any) => item.section === 'bio');
+  const approachSection = aboutData.find((item: any) => item.section === 'approach');
+  const interestsSection = aboutData.find((item: any) => item.section === 'interests');
+
   const technologies = [
     "JavaScript", "TypeScript", "React", "Next.js",
     "Node.js", "Express", "MongoDB", "PostgreSQL",
@@ -23,6 +36,30 @@ const About = () => {
     }
   };
 
+  // Show loading state
+  if (isLoading) {
+    return (
+      <div className="container px-4 mx-auto">
+        <Breadcrumb items={[{ title: "About Me" }]} />
+        <div className="flex justify-center items-center h-64">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500"></div>
+        </div>
+      </div>
+    );
+  }
+
+  // Show error state
+  if (Error) {
+    return (
+      <div className="container px-4 mx-auto">
+        <Breadcrumb items={[{ title: "About Me" }]} />
+        <div className="flex justify-center items-center h-64">
+          <p className="text-red-400">Failed to load about data. Please try again later.</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="container px-4 mx-auto">
       {/* Breadcrumb */}
@@ -30,9 +67,9 @@ const About = () => {
 
       {/* Hero Section */}
       <SectionHeading
-        title="About Me"
+        title={heroSection?.title || "About Me"}
         subtitle="01. WHO I AM"
-        description="I build accessible, inclusive products and digital experiences for the web."
+        description={heroSection?.content || "I build accessible, inclusive products and digital experiences for the web."}
       />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 mt-10">
@@ -84,12 +121,10 @@ const About = () => {
             </motion.div>
 
             <p className="text-white/80 leading-relaxed">
-              I'm a Strong Full Stack Developer with experience building scalable web applications, SaaS platforms, and API-driven systems using Node.js, Express.js, React.js, Next.js, and MongoDB. Skilled in architecting secure backends, implementing authentication/authorization (JWT, RBAC), integrating payment gateways (Razorpay), and designing optimized REST APIs.
-              Proficient in building responsive, production-ready frontends with React, Next.js, Tailwind CSS, and component-driven design.
+              {bioSection?.content || "I'm a Strong Full Stack Developer with experience building scalable web applications, SaaS platforms, and API-driven systems using Node.js, Express.js, React.js, Next.js, and MongoDB. Skilled in architecting secure backends, implementing authentication/authorization (JWT, RBAC), integrating payment gateways (Razorpay), and designing optimized REST APIs. Proficient in building responsive, production-ready frontends with React, Next.js, Tailwind CSS, and component-driven design."}
             </p>
             <p className="text-white/80 leading-relaxed">
-              <b>My journey in technology </b> I have Hands-on experience delivering 10+ client projects, collaborating with cross-functional teams, leading developers, and deploying high-quality full-stack solutions.
-              Strong understanding of system design, microservices concepts, Docker, cloud deployments (AWS/GCP), and database modeling. Passionate about solving complex technical problems, improving performance, and delivering seamless user experiences end-to-end.
+              <b>My journey in technology </b> {bioSection?.content?.split('.')[1] || "I have Hands-on experience delivering 10+ client projects, collaborating with cross-functional teams, leading developers, and deploying high-quality full-stack solutions. Strong understanding of system design, microservices concepts, Docker, cloud deployments (AWS/GCP), and database modeling. Passionate about solving complex technical problems, improving performance, and delivering seamless user experiences end-to-end."}
             </p>
           </div>
 
@@ -104,28 +139,32 @@ const About = () => {
               <h3 className="text-xl font-bold">My Approach</h3>
             </motion.div>
 
-            <ul className="space-y-3 text-white/80">
-              <li className="flex items-center gap-2">
-                <span className="h-1.5 w-1.5 rounded-full bg-purple-400"></span>
-                <span>User-centered design approach</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="h-1.5 w-1.5 rounded-full bg-purple-400"></span>
-                <span>Clean, maintainable code</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="h-1.5 w-1.5 rounded-full bg-purple-400"></span>
-                <span>Responsive and accessible interfaces</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="h-1.5 w-1.5 rounded-full bg-purple-400"></span>
-                <span>Performance optimization</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="h-1.5 w-1.5 rounded-full bg-purple-400"></span>
-                <span>Continuous learning and improvement</span>
-              </li>
-            </ul>
+            <div className="text-white/80">
+              {approachSection?.content || (
+                <ul className="space-y-3">
+                  <li className="flex items-center gap-2">
+                    <span className="h-1.5 w-1.5 rounded-full bg-purple-400"></span>
+                    <span>User-centered design approach</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="h-1.5 w-1.5 rounded-full bg-purple-400"></span>
+                    <span>Clean, maintainable code</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="h-1.5 w-1.5 rounded-full bg-purple-400"></span>
+                    <span>Responsive and accessible interfaces</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="h-1.5 w-1.5 rounded-full bg-purple-400"></span>
+                    <span>Performance optimization</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="h-1.5 w-1.5 rounded-full bg-purple-400"></span>
+                    <span>Continuous learning and improvement</span>
+                  </li>
+                </ul>
+              )}
+            </div>
           </div>
 
           <div className="space-y-4">
@@ -140,9 +179,7 @@ const About = () => {
             </motion.div>
 
             <p className="text-white/80 leading-relaxed">
-              When I'm not in front of a computer screen, I enjoy exploring new technologies,
-              reading about design principles, and spending time outdoors. I'm also passionate
-              about Gym,Travelling, playing Sports, and trying new Places.
+              {interestsSection?.content || "When I'm not in front of a computer screen, I enjoy exploring new technologies, reading about design principles, and spending time outdoors. I'm also passionate about Gym,Travelling, playing Sports, and trying new Places."}
             </p>
           </div>
         </motion.div>

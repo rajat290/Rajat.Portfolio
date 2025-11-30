@@ -1,6 +1,14 @@
-
+import React from "react";
 import { motion } from "framer-motion";
 import { BookOpen, Briefcase } from "lucide-react";
+import { useQuery } from '@tanstack/react-query';
+import { apiClient } from '@/lib/api';
+
+// API call to fetch experience data
+const fetchExperience = async () => {
+  const response = await apiClient.get('/experience');
+  return response.data.data || [];
+};
 
 type TimelineEntryProps = {
   title: string;
@@ -43,49 +51,16 @@ const TimelineEntry = ({ title, subtitle, date, description, index }: TimelineEn
 };
 
 const StudyJourneyExperience = () => {
-  // Education timeline data
-  const education = [
-    {
-      title: "MASTER IN COMPUTER APPLICATIONS",
-      subtitle: "Galgotias University ",
-      date: "2022 - 2024",
-      description: "Focused on Advanced programming, system design, and data structures and Data Analytics"
-    },
-    {
-      title: "BACHELOR IN COMPUTER APPLICATIONS",
-      subtitle: "BBD University",
-      date: "2019 - 2022",
-      description: "Foundation in programming languages, Networking, Cyber Sequrity, and web development"
-    },
-    {
-      title: "Higher Secondary Education",
-      subtitle: "SVMIC ",
-      date: "2013 - 2018",
-      description: "Physics, Chemistry and Mathematics"
-    }
-  ];
+  // Fetch experience data from API
+  const { data: experienceData = [], isLoading: experienceLoading, error: experienceError } = useQuery({
+    queryKey: ['experience'],
+    queryFn: fetchExperience,
+    staleTime: 5 * 60 * 1000, // 5 minutes
+  });
 
-  // Work experience timeline data
-  const experience = [
-    {
-      title: "Full Stack Developer",
-      subtitle: "Getsetdeployed (Remote)",
-      date: "Aug.2024 - Present",
-      description: "Leading development of scalable web applications using modern technologies"
-    },
-    {
-      title: "Freelance Web Developer",
-      subtitle: "",
-      date: "July 2022 - Aug.2024",
-      description: "Built responsive user interfaces with React, Next.js, and Tailwind CSS"
-    },
-    {
-      title: "Android Developer Intern",
-      subtitle: "Digipodium (Lucknow)",
-      date: "Jan 2022 - May 2019",
-      description: "Assisted in developing and maintaining client websites and applications"
-    }
-  ];
+  // Separate education and work experience
+  const education = experienceData.filter(item => item.type === 'education') || [];
+  const experience = experienceData.filter(item => item.type === 'work') || [];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -107,6 +82,48 @@ const StudyJourneyExperience = () => {
     }
   };
 
+  // Show loading state
+  if (experienceLoading) {
+    return (
+      <section className="py-16 relative z-10" id="experience">
+        <div className="max-w-6xl mx-auto">
+          <div className="mb-10">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-2">
+              My <span className="gradient-text">Journey</span> So Far
+            </h2>
+            <p className="text-white/70 text-center mb-12">
+              Education and professional experiences that shaped my skills
+            </p>
+          </div>
+          <div className="flex justify-center items-center h-64">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500"></div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // Show error state
+  if (experienceError) {
+    return (
+      <section className="py-16 relative z-10" id="experience">
+        <div className="max-w-6xl mx-auto">
+          <div className="mb-10">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-2">
+              My <span className="gradient-text">Journey</span> So Far
+            </h2>
+            <p className="text-white/70 text-center mb-12">
+              Education and professional experiences that shaped my skills
+            </p>
+          </div>
+          <div className="flex justify-center items-center h-64">
+            <p className="text-red-400">Failed to load experience data. Please try again later.</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="py-16 relative z-10" id="experience">
       <div className="max-w-6xl mx-auto">
@@ -116,13 +133,13 @@ const StudyJourneyExperience = () => {
           variants={containerVariants}
           className="mb-10"
         >
-          <motion.h2 
+          <motion.h2
             variants={sectionVariants}
             className="text-3xl md:text-4xl font-bold text-center mb-2"
           >
             My <span className="gradient-text">Journey</span> So Far
           </motion.h2>
-          <motion.p 
+          <motion.p
             variants={sectionVariants}
             className="text-white/70 text-center mb-12"
           >
@@ -147,7 +164,7 @@ const StudyJourneyExperience = () => {
             <div className="space-y-1">
               {education.map((item, index) => (
                 <TimelineEntry
-                  key={index}
+                  key={item._id || index}
                   title={item.title}
                   subtitle={item.subtitle}
                   date={item.date}
@@ -174,7 +191,7 @@ const StudyJourneyExperience = () => {
             <div className="space-y-1">
               {experience.map((item, index) => (
                 <TimelineEntry
-                  key={index}
+                  key={item._id || index}
                   title={item.title}
                   subtitle={item.subtitle}
                   date={item.date}

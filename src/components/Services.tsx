@@ -2,7 +2,15 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Globe, Code, Database, Server, School, Users } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useQuery } from '@tanstack/react-query';
+import { apiClient } from '@/lib/api';
 import SectionHeading from "./SectionHeading";
+
+// API call to fetch services data
+const fetchServices = async () => {
+  const response = await apiClient.get('/services');
+  return response.data.data || [];
+};
 
 interface ServiceCardProps {
   icon: React.ReactNode;
@@ -47,6 +55,63 @@ const ServiceCard = ({ icon, title, description, price, ctaText, ctaLink }: Serv
 };
 
 const Services = () => {
+  // Fetch services data from API
+  const { data: services = [], isLoading, error } = useQuery({
+    queryKey: ['services'],
+    queryFn: fetchServices,
+    staleTime: 5 * 60 * 1000, // 5 minutes
+  });
+
+  // Icon mapping based on service icon string
+  const getIcon = (iconName: string) => {
+    const iconMap: { [key: string]: React.ReactNode } = {
+      'Globe': <Globe className="text-purple-400" size={24} />,
+      'Code': <Code className="text-purple-400" size={24} />,
+      'Database': <Database className="text-purple-400" size={24} />,
+      'Server': <Server className="text-purple-400" size={24} />,
+      'School': <School className="text-purple-400" size={24} />,
+      'Users': <Users className="text-purple-400" size={24} />,
+    };
+    return iconMap[iconName] || <Globe className="text-purple-400" size={24} />;
+  };
+
+  // Show loading state
+  if (isLoading) {
+    return (
+      <section id="services" className="py-16 container px-4 mx-auto">
+        <SectionHeading
+          title="Services Offered"
+          subtitle="03. MY SERVICES"
+          description="I offer a range of development services to help bring your digital ideas to life."
+        />
+        <div className="flex justify-center items-center h-64 mt-12">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500"></div>
+        </div>
+      </section>
+    );
+  }
+
+  // Show error state
+  if (error) {
+    return (
+      <section id="services" className="py-16 container px-4 mx-auto">
+        <SectionHeading
+          title="Services Offered"
+          subtitle="03. MY SERVICES"
+          description="I offer a range of development services to help bring your digital ideas to life."
+        />
+        <div className="flex justify-center items-center h-64 mt-12">
+          <p className="text-red-400">Failed to load services. Please try again later.</p>
+        </div>
+      </section>
+    );
+  }
+
+  // Don't render if no services
+  if (!services || services.length === 0) {
+    return null;
+  }
+
   return (
     <section id="services" className="py-16 container px-4 mx-auto">
       <SectionHeading
@@ -54,61 +119,19 @@ const Services = () => {
         subtitle="03. MY SERVICES"
         description="I offer a range of development services to help bring your digital ideas to life."
       />
-      
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
-        <ServiceCard
-          icon={<Globe className="text-purple-400" size={24} />}
-          title="Custom Website Development"
-          description="Responsive websites built with modern frameworks and as Client Requirements, optimized for performance and user experience."
-          price="$25/Hours"
-          ctaText="Get started"
-          ctaLink="#contact"
-        />
-        
-        <ServiceCard
-          icon={<Code className="text-purple-400" size={24} />}
-          title="Complete Web/Mobile Applications"
-          description="Full-stack web applications built with client requirements with a focus on performance,and dedicated Android and iOS Application perfect for complex interactive growth incentive businesses."
-          price="$2,500+"
-          ctaText="Discuss your project"
-          ctaLink="#contact"
-        />
-        
-        <ServiceCard
-          icon={<School className="text-purple-400" size={24} />}
-          title="Complete Management Systems for Any Industries "
-          description="Comprehensive Management systems for Business to manage students, staff,worker, inventory, classes, fee, and administrative tasks and many more things efficiently."
-          price="$3,000+"
-          ctaText="Learn more"
-          ctaLink="#contact"
-        />
-        
-        <ServiceCard
-          icon={<Database className="text-purple-400" size={24} />}
-          title="Complete Restaurant & Hotel Management Systems"
-          description="Reservation Management, Order Processing, Customer Relationship Management, Reporting and Analytics"
-          price="$1,000+"
-          ctaText="Get a quote"
-          ctaLink="#contact"
-        />
-        
-        <ServiceCard
-          icon={<Server className="text-purple-400" size={24} />}
-          title="API Development"
-          description="Robust, secure, and well-documented REST or GraphQL APIs to power your web and mobile applications."
-          price="$1,500+"
-          ctaText="Discuss requirements"
-          ctaLink="#contact"
-        />
-        
-        <ServiceCard
-          icon={<Users className="text-purple-400" size={24} />}
-          title="Custom Enterprise Solutions"
-          description="Tailored enterprise-grade applications designed specifically for your business needs and workflow requirements."
-          price="Custom"
-          ctaText="Request consultation"
-          ctaLink="#contact"
-        />
+        {services.map((service: any, index: number) => (
+          <ServiceCard
+            key={service._id || index}
+            icon={getIcon(service.icon)}
+            title={service.title}
+            description={service.description}
+            price={service.price}
+            ctaText={service.ctaText}
+            ctaLink={service.ctaLink}
+          />
+        ))}
       </div>
     </section>
   );

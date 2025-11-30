@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { motion, AnimatePresence, useMotionValue } from "framer-motion";
 import { ArrowRight, Flag } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
 
 // Swiper imports
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -23,78 +24,22 @@ import "swiper/css/pagination";
 
 const DRAG_DISTANCE_THRESHOLD = 180;
 
-const projects = [
-  {
-    title: "PaddleLift",
-    description:
-      "A Noida Based HR Company Who provides resources to another companies and post their jobs on their portal.",
-    longDescription:
-      "Developed a user-friendly website and job portal platform where the company can showcase its statistics, presence, portfolio, industries served, and contact details. The integrated job portal with RBAC authentication that allows them to list open positions and share new job openings directly with potential candidates. and also accept applications from candidates and their resumes.",
-    images: [
-      "src/Img/PaddleLift/Hero.png",
-      "src/Img/PaddleLift/Hero2.png",
-      "src/Img/PaddleLift/jobPortal.png",
-      "src/Img/PaddleLift/JobOpening.png",
-      "src/Img/PaddleLift/jobApply.png",
-    ],
-    points: [
-      "Leveraged Partial Prerendering and After for faster loading.",
-      "Simplified idea submission with a clean, intuitive design.",
-      "Enhanced browsing with seamless performance optimization.",
-    ],
-    tech: [
-      { name: "Next.js", icon: "N" },
-      { name: "Redux", icon: "⚛️" },
-      { name: "Tailwind CSS", icon: "💨" },
-      { name: "TypeScript", icon: "TS" },
-      { name: "Node.JS", icon: "🟢" },
-      { name: "Express.JS", icon: "🚀" },
-      { name: "PostgreSQL", icon: "🐘" },
-      { name: "Prisma", icon: "▲" },
-    ],
-    links: [
-      { name: "Website", url: "https://paddlelift.com/" },
-      { name: "Job Portal", url: "https://paddlelift.com/jobs" },
-    ],
-  },
-
-  {
-    title: "CommunityLink — CakePHP Volunteer Platform",
-    description:
-      "A comprehensive volunteer management platform developed for One of my Australian Client to run a non-profit organization to connect community partners with volunteers.",
-    longDescription:
-      "CommunityLink is a robust web application designed for non-profit organizations to manage volunteer programs efficiently. Built with CakePHP 5, it features a complete CRUD system, advanced search functionality using QueryBuilder, secure file uploads, and a comprehensive dashboard with business intelligence insights. The application follows Australian standards with proper timezone configuration and professional branding.",
-    images: [
-      "src/Img/CommunityLInk/Screenshot 2025-11-15 122237.png",
-      "src/Img/CommunityLInk/Screenshot 2025-11-15 152743.png",
-      "src/Img/CommunityLInk/Screenshot 2025-11-15 152812.png",
-      "src/Img/CommunityLInk/Screenshot 2025-11-15 152833.png",
-      "src/Img/CommunityLInk/Screenshot 2025-11-15 152855.png",
-    ],
-    points: [
-      "Implemented MVC architecture with proper separation of concerns.",
-      "Developed server-side search using CakePHP QueryBuilder with multi-field filtering.",
-      "Created secure file upload system for document management with validation.",
-      "Built responsive UI with Bootstrap 5 and custom CommunityLink branding.",
-      "Configured Australian localization with proper timezone and date formatting.",
-      "Designed relational database schema with 8 interconnected tables.",
-    ],
-    tech: [
-      { name: "CakePHP 5", icon: "🍰" },
-      { name: "PHP 8.2", icon: "🐘" },
-      { name: "MySQL", icon: "🗄️" },
-      { name: "Bootstrap 5", icon: "🅱️" },
-      { name: "JavaScript", icon: "📜" },
-      { name: "jQuery", icon: "⚡" },
-      { name: "Composer", icon: "📦" },
-      { name: "Apache", icon: "🌐" },
-    ],
-  },
-];
+// API call to fetch featured projects
+const fetchFeaturedProjects = async () => {
+  const response = await apiClient.get('/projects?featured=true');
+  return response.data.data || [];
+};
 
 const FeaturedCaseStudies = () => {
   const [current, setCurrent] = useState(0);
   const x = useMotionValue(0);
+
+  // Fetch featured projects from API
+  const { data: projects = [], isLoading, error } = useQuery({
+    queryKey: ['featured-projects'],
+    queryFn: fetchFeaturedProjects,
+    staleTime: 5 * 60 * 1000, // 5 minutes
+  });
 
   const nextSlide = () => setCurrent((prev) => (prev + 1) % projects.length);
   const prevSlide = () =>
@@ -105,6 +50,55 @@ const FeaturedCaseStudies = () => {
     if (draggedDistance < -DRAG_DISTANCE_THRESHOLD) nextSlide();
     else if (draggedDistance > DRAG_DISTANCE_THRESHOLD) prevSlide();
   };
+
+  // Show loading state
+  if (isLoading) {
+    return (
+      <section className="py-16 md:py-24">
+        <div className="mb-8 md:mb-16">
+          <p className="text-sm font-mono text-muted-foreground mb-2">
+            FEATURED CASE STUDIES
+          </p>
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
+            Curated{" "}
+            <span className="bg-gradient-to-r from-purple-400 via-pink-500 to-purple-600 text-transparent bg-clip-text">
+              work
+            </span>
+          </h2>
+        </div>
+        <div className="flex justify-center items-center h-64">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500"></div>
+        </div>
+      </section>
+    );
+  }
+
+  // Show error state
+  if (error) {
+    return (
+      <section className="py-16 md:py-24">
+        <div className="mb-8 md:mb-16">
+          <p className="text-sm font-mono text-muted-foreground mb-2">
+            FEATURED CASE STUDIES
+          </p>
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
+            Curated{" "}
+            <span className="bg-gradient-to-r from-purple-400 via-pink-500 to-purple-600 text-transparent bg-clip-text">
+              work
+            </span>
+          </h2>
+        </div>
+        <div className="flex justify-center items-center h-64">
+          <p className="text-red-400">Failed to load featured projects. Please try again later.</p>
+        </div>
+      </section>
+    );
+  }
+
+  // Don't render if no projects
+  if (!projects || projects.length === 0) {
+    return null;
+  }
 
   const project = projects[current];
 

@@ -1,78 +1,14 @@
 import { motion, AnimatePresence, wrap } from "framer-motion";
 import { Database, Server, Laptop, BrainCircuit } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useQuery } from '@tanstack/react-query';
+import { apiClient } from '@/lib/api';
 
-/* ---------- Tech Stack Data ---------- */
-const techStackData = [
-  {
-    category: "Frontend",
-    icon: <Laptop className="w-5 h-5 text-blue-400" />,
-    technologies: [
-      { name: "HTML", icon: "👩‍💻", color: "bg-orange-500" },
-      { name: "CSS", icon: "🎨", color: "bg-blue-500" },
-      { name: "React.JS", icon: "⚛️", color: "bg-cyan-500" },
-      { name: "Next.JS", icon: "N", color: "bg-black" },
-      { name: "Tailwind CSS", icon: "💨", color: "bg-cyan-400" },
-      { name: "Framer Motion", icon: "🎉", color: "bg-green-500" },
-      { name: "Three.JS", icon: "🎉", color: "bg-gray-800" },
-      { name: "Bootstrap", icon: "🔄", color: "bg-pink-500" }
-    ]
-  },
-
-  {
-    category: "Backend",
-    icon: <Server className="w-5 h-5 text-pink-400" />,
-    technologies: [
-      { name: "Node.JS", icon: "🟢", color: "bg-green-600" },
-      { name: "Express.JS", icon: "🚀", color: "bg-gray-700" },
-      { name: "Prisma", icon: "▲", color: "bg-purple-700" },
-      { name: "Zustand", icon: "🐻", color: "bg-yellow-600" },
-      { name: "Zod", icon: "Z", color: "bg-purple-500" },
-      { name: "Shadcn", icon: "◼️", color: "bg-gray-900" }
-    ]
-  },
-
-  {
-    category: "Programming",
-    icon: <Server className="w-5 h-5 text-pink-400" />,
-    technologies: [
-      { name: "JavaScript", icon: "⚡", color: "bg-green-600" },
-      { name: "TypeScript", icon: "📘", color: "bg-gray-700" },
-      { name: "OOPs", icon: "📚", color: "bg-purple-700" },
-      { name: "Design Patterns", icon: "🧩", color: "bg-yellow-600" },
-      { name: "Dependency Injection", icon: "🛠️", color: "bg-purple-500" },
-      {
-        name: "Problem Solving, Debugging & Error Handling",
-        icon: "💡",
-        color: "bg-gray-900"
-      }
-    ]
-  },
-
-  {
-    category: "Databases",
-    icon: <Database className="w-5 h-5 text-green-400" />,
-    technologies: [
-      { name: "MongoDB", icon: "🍃", color: "bg-green-700" },
-      { name: "MySQL", icon: "🐬", color: "bg-blue-700" },
-      { name: "PostgreSQL", icon: "🐘", color: "bg-indigo-600" }
-    ]
-  },
-
-  {
-    category: "Tools & DevOps",
-    icon: <BrainCircuit className="w-5 h-5 text-violet-400" />,
-    technologies: [
-      { name: "Git", icon: "🔄", color: "bg-orange-600" },
-      { name: "GitHub", icon: "🐱", color: "bg-gray-800" },
-      { name: "Vercel", icon: "▲", color: "bg-gray-900" },
-      { name: "Postman", icon: "📬", color: "bg-orange-500" },
-      { name: "Linux", icon: "🐧", color: "bg-yellow-700" },
-      { name: "Docker", icon: "📦", color: "bg-yellow-500" },
-      { name: "RESTful APIs", icon: "☕", color: "bg-red-600" }
-    ]
-  }
-];
+// API call to fetch tech stack data
+const fetchTechStack = async () => {
+  const response = await apiClient.get('/techstack');
+  return response.data.data || [];
+};
 
 /* ---------- Reusable Card ---------- */
 const CategoryCard = ({ category }) => (
@@ -101,6 +37,13 @@ const CategoryCard = ({ category }) => (
 const TechStack = () => {
   const [[page, direction], setPage] = useState([0, 0]);
 
+  // Fetch tech stack data from API
+  const { data: techStackData = [], isLoading, error } = useQuery({
+    queryKey: ['techstack'],
+    queryFn: fetchTechStack,
+    staleTime: 5 * 60 * 1000, // 5 minutes
+  });
+
   const index = wrap(0, techStackData.length, page);
 
   const paginate = (newDirection) => {
@@ -112,6 +55,39 @@ const TechStack = () => {
     const timer = setInterval(() => paginate(1), 3000);
     return () => clearInterval(timer);
   }, [page]);
+
+  // Show loading state
+  if (isLoading) {
+    return (
+      <section className="py-20 md:py-28 relative overflow-hidden" id="skills">
+        <div className="container relative z-10">
+          <h2 className="text-center text-4xl md:text-5xl font-bold mb-12">My Tech Stack</h2>
+          <div className="flex justify-center items-center h-64">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // Show error state
+  if (error) {
+    return (
+      <section className="py-20 md:py-28 relative overflow-hidden" id="skills">
+        <div className="container relative z-10">
+          <h2 className="text-center text-4xl md:text-5xl font-bold mb-12">My Tech Stack</h2>
+          <div className="flex justify-center items-center h-64">
+            <p className="text-red-400">Failed to load tech stack. Please try again later.</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // Don't render if no data
+  if (!techStackData || techStackData.length === 0) {
+    return null;
+  }
 
   return (
     <section className="py-20 md:py-28 relative overflow-hidden" id="skills">

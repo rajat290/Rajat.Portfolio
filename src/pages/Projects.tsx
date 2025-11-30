@@ -2,9 +2,11 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Github, ExternalLink, Info } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
 import SectionHeading from "@/components/SectionHeading";
 import Image from "@/components/Image";
 import Breadcrumb from "@/components/Breadcrumb";
+import apiClient from "@/lib/api";
 
 interface ProjectDetailsModalProps {
   isOpen: boolean;
@@ -235,6 +237,13 @@ const ProjectsPage = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  // Fetch projects from API
+  const { data: projects = [], isLoading, error } = useQuery({
+    queryKey: ['projects'],
+    queryFn: fetchProjects,
+    staleTime: 5 * 60 * 1000, // 5 minutes
+  });
+
   const openProjectDetails = (project: Project) => {
     setSelectedProject(project);
     setIsModalOpen(true);
@@ -245,6 +254,42 @@ const ProjectsPage = () => {
     setIsModalOpen(false);
     document.body.style.overflow = 'auto';
   };
+
+  // Show loading state
+  if (isLoading) {
+    return (
+      <div className="relative min-h-screen pt-16 pb-16">
+        <div className="container mx-auto px-4 relative z-10">
+          <SectionHeading
+            title="My Projects"
+            overlineText="03. WHAT I'VE BUILT"
+            description="Explore my latest projects, built with modern web technologies to solve real-world problems."
+          />
+          <div className="flex justify-center items-center h-64 mt-10">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500"></div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Show error state
+  if (error) {
+    return (
+      <div className="relative min-h-screen pt-16 pb-16">
+        <div className="container mx-auto px-4 relative z-10">
+          <SectionHeading
+            title="My Projects"
+            overlineText="03. WHAT I'VE BUILT"
+            description="Explore my latest projects, built with modern web technologies to solve real-world problems."
+          />
+          <div className="flex justify-center items-center h-64 mt-10">
+            <p className="text-red-400">Failed to load projects. Please try again later.</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="relative min-h-screen pt-16 pb-16">
