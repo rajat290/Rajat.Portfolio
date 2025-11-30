@@ -5,7 +5,7 @@ export interface IExperience extends Document {
   subtitle: string;
   date: string;
   description?: string;
-  type: 'work' | 'education';
+  type: 'experience' | 'education';
   order: number;
 }
 
@@ -31,7 +31,7 @@ const ExperienceSchema: Schema = new Schema({
   },
   type: {
     type: String,
-    enum: ['work', 'education'],
+    enum: ['education', 'experience'],
     required: true
   },
   order: {

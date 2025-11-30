@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import connectDB from '../config/database';
 import Project from '../models/Project';
 import TechStack from '../models/TechStack';
 import Service from '../models/Service';
@@ -7,6 +8,8 @@ import About from '../models/About';
 
 const seedDatabase = async () => {
   try {
+    // Connect to database first
+    await connectDB();
     console.log('🌱 Starting database seeding...');
 
     // Clear existing data
@@ -138,6 +141,7 @@ const seedDatabase = async () => {
     const techStackData = [
       {
         category: "Frontend",
+        icon: "💻",
         technologies: [
           { name: "HTML", icon: "👩‍💻", color: "bg-orange-500" },
           { name: "CSS", icon: "🎨", color: "bg-blue-500" },
@@ -151,6 +155,7 @@ const seedDatabase = async () => {
       },
       {
         category: "Backend",
+        icon: "⚙️",
         technologies: [
           { name: "Node.JS", icon: "🟢", color: "bg-green-600" },
           { name: "Express.JS", icon: "🚀", color: "bg-gray-700" },
@@ -162,6 +167,7 @@ const seedDatabase = async () => {
       },
       {
         category: "Programming",
+        icon: "💻",
         technologies: [
           { name: "JavaScript", icon: "⚡", color: "bg-green-600" },
           { name: "TypeScript", icon: "📘", color: "bg-gray-700" },
@@ -173,6 +179,7 @@ const seedDatabase = async () => {
       },
       {
         category: "Databases",
+        icon: "🗄️",
         technologies: [
           { name: "MongoDB", icon: "🍃", color: "bg-green-700" },
           { name: "MySQL", icon: "🐬", color: "bg-blue-700" },
@@ -181,6 +188,7 @@ const seedDatabase = async () => {
       },
       {
         category: "Tools & DevOps",
+        icon: "🛠️",
         technologies: [
           { name: "Git", icon: "🔄", color: "bg-orange-600" },
           { name: "GitHub", icon: "🐱", color: "bg-gray-800" },
@@ -258,14 +266,14 @@ const seedDatabase = async () => {
         subtitle: "Getsetdeployed (Remote)",
         date: "2024 - Present",
         description: "Developing full-stack web applications using React, Node.js, and MongoDB. Leading development of scalable SaaS platforms and implementing modern web technologies.",
-        type: "work"
+        type: "experience"
       },
       {
         title: "Freelance Full Stack Developer",
         subtitle: "Self-Employed",
         date: "2023 - Present",
         description: "Building custom web applications for clients worldwide. Specializing in React, Next.js, Node.js, and database design. Managing end-to-end project delivery from concept to deployment.",
-        type: "work"
+        type: "experience"
       },
       {
         title: "MASTER IN COMPUTER APPLICATIONS",
@@ -323,7 +331,24 @@ const seedDatabase = async () => {
   } catch (error) {
     console.error('❌ Error seeding database:', error);
     throw error;
+  } finally {
+    // Close the database connection
+    await mongoose.connection.close();
+    console.log('🔌 Database connection closed');
   }
 };
+
+// Run the seed function if this file is executed directly
+if (require.main === module) {
+  seedDatabase()
+    .then(() => {
+      console.log('✅ Seeding completed successfully');
+      process.exit(0);
+    })
+    .catch((error) => {
+      console.error('❌ Seeding failed:', error);
+      process.exit(1);
+    });
+}
 
 export default seedDatabase;

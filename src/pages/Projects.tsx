@@ -24,62 +24,11 @@ interface Project {
   image: string;
 }
 
-const projects: Project[] = [
-  {
-    title: "Cinex - Movie ticket booking App",
-    description: "A modern e-commerce platform with responsive design and Stripe integration.",
-    longDescription: "A modern e-commerce platform with a responsive design, user authentication, product search and filtering, shopping cart, and checkout functionality. Built with React, Node.js, Express, and MongoDB, with Stripe integration for payments.",
-    technologies: ["React", "Node.js", "Express", "MongoDB", "Stripe API"],
-    githubLink: "https://github.com",
-    liveLink: "https://demo-ecommerce.example.com",
-    image: "src/Img/Cinex/image.png"
-  },
-  {
-    title: "GetSchool - School Management System",
-    description: "A full-stack task management application with drag-and-drop interface.",
-    longDescription: "A full-stack task management application with drag-and-drop interface, user authentication, task categorization, and real-time updates. Features include task prioritization, due dates, and team collaboration tools.",
-    technologies: ["React", "TypeScript", "Firebase", "Tailwind CSS"],
-    githubLink: "https://github.com",
-    liveLink: "https://demo-taskmanager.example.com",
-    image: "src/Img/localhost_5173_ copy.png"
-  },
-  {
-    title: "GetLearn - Online Learning Platform",
-    description: "A minimalist portfolio website showcasing projects, skills, and experience.",
-    longDescription: "A minimalist portfolio website showcasing projects, skills, and experience. Features responsive design, animations, and contact form. Built with Next.js for optimal performance and SEO.",
-    technologies: ["Next.js", "Framer Motion", "Tailwind CSS"],
-    githubLink: "https://github.com",
-    liveLink: "https://demo-portfolio.example.com",
-    image: "src/Img/Screenshot 2025-09-03 134309.png"
-  },
-  {
-    title: "GetPay - Payment Receiving App",
-    description: "A weather dashboard that displays current weather conditions and forecasts.",
-    longDescription: "A weather dashboard that displays current weather conditions and forecasts for multiple locations. Features interactive maps and charts, historical weather data comparisons, and custom alerts.",
-    technologies: ["React", "Chart.js", "OpenWeather API", "Leaflet"],
-    githubLink: "https://github.com",
-    liveLink: "https://demo-weather.example.com",
-    image: "src/Img/image.png"
-  },
-  {
-    title: "FleetLink - Vehicle Booking System",
-    description: "A dashboard for managing and analyzing social media accounts across platforms.",
-    longDescription: "A dashboard for managing and analyzing social media accounts across multiple platforms. Features analytics, content scheduling, and engagement tracking with visual representations of trends and user engagement.",
-    technologies: ["React", "Redux", "Node.js", "Express", "MongoDB"],
-    githubLink: "https://github.com",
-    liveLink: "https://demo-socialdashboard.example.com",
-    image: "src/Img/image copy.png"
-  },
-  {
-    title: "RajatTomar's_Recipes",
-    description: "A recipe application that allows users to browse, search, save, and share recipes.",
-    longDescription: "A recipe application that allows users to browse, search, save, and share recipes. Features user authentication, recipe categories, and a responsive design. Users can create shopping lists and meal plans based on selected recipes.",
-    technologies: ["React", "Firebase", "CSS Modules", "Spoonacular API"],
-    githubLink: "https://github.com",
-    liveLink: "https://demo-recipes.example.com",
-    image: "https://images.unsplash.com/photo-1505935428862-770b6f24f629?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1167&q=80"
-  }
-];
+// API call to fetch all projects
+const fetchProjects = async () => {
+  const response = await apiClient.get('/projects');
+  return response.data.data || [];
+};
 
 const ProjectCard = ({ project, index, onClick }: { project: Project; index: number; onClick: () => void }) => {
   return (
@@ -99,15 +48,15 @@ const ProjectCard = ({ project, index, onClick }: { project: Project; index: num
         <p className="text-white/70 mb-4 text-sm flex-1">{project.description}</p>
         
         <div className="flex flex-wrap gap-1 mb-3">
-          {project.technologies.slice(0, 3).map((tech, techIndex) => (
-            <span 
-              key={techIndex} 
+          {project.technologies && project.technologies.slice(0, 3).map((tech, techIndex) => (
+            <span
+              key={techIndex}
               className="inline-block text-xs font-mono py-0.5 px-1.5 rounded-full bg-white/10 text-white/80 hover:bg-white/15 hover:text-white transition-colors"
             >
               {tech}
             </span>
           ))}
-          {project.technologies.length > 3 && (
+          {project.technologies && project.technologies.length > 3 && (
             <span className="inline-block text-xs font-mono py-0.5 px-1.5 rounded-full bg-white/10 text-white/80">
               +{project.technologies.length - 3}
             </span>
@@ -179,7 +128,7 @@ const ProjectDetailsModal = ({ isOpen, onClose, project }: ProjectDetailsModalPr
         <div className="mb-6">
           <h3 className="text-lg font-medium mb-2">Technologies</h3>
           <div className="flex flex-wrap gap-2">
-            {project.technologies.map((tech, index) => (
+            {project.technologies && project.technologies.map((tech, index) => (
               <span key={index} className="inline-block text-sm font-mono py-1 px-3 rounded-full bg-white/10 text-white/80">
                 {tech}
               </span>
