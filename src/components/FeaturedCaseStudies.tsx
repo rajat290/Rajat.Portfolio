@@ -21,7 +21,7 @@ import "swiper/css/pagination";
  * - outer carousel (Framer Motion) remains for layout/drag animations
  */
 
-const DRAG_DISTANCE_THRESHOLD = 80;
+const DRAG_DISTANCE_THRESHOLD = 180;
 
 const projects = [
   {

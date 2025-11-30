@@ -82,7 +82,7 @@ const CategoryCard = ({ category }) => (
       <h3 className="text-xl font-semibold">{category.category}</h3>
     </div>
 
-    <div className="flex flex-wrap gap-3 py-[24px]">
+    <div className="flex flex-wrap gap-3 py-[20px]">
       {category.technologies.map((tech) => (
         <motion.div
           key={tech.name}
