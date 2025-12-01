@@ -10,7 +10,17 @@ interface AuthRequest extends Request {
 // @access  Public
 export const getProjects = async (req: Request, res: Response) => {
   try {
-    const projects = await Project.find({})
+    const { featured } = req.query;
+
+    // Build query object
+    const query: any = {};
+
+    // Filter by featured if query parameter is present
+    if (featured === 'true') {
+      query.featured = true;
+    }
+
+    const projects = await Project.find(query)
       .sort({ order: 1, createdAt: -1 });
 
     res.json({

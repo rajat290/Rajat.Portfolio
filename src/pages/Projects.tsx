@@ -48,7 +48,7 @@ const ProjectCard = ({ project, index, onClick }: { project: Project; index: num
         <p className="text-white/70 mb-4 text-sm flex-1">{project.description}</p>
         
         <div className="flex flex-wrap gap-1 mb-3">
-          {project.technologies && project.technologies.slice(0, 3).map((tech, techIndex) => (
+          {Array.isArray(project.technologies) && project.technologies.slice(0, 3).map((tech, techIndex) => (
             <span
               key={techIndex}
               className="inline-block text-xs font-mono py-0.5 px-1.5 rounded-full bg-white/10 text-white/80 hover:bg-white/15 hover:text-white transition-colors"
@@ -56,7 +56,7 @@ const ProjectCard = ({ project, index, onClick }: { project: Project; index: num
               {tech}
             </span>
           ))}
-          {project.technologies && project.technologies.length > 3 && (
+          {Array.isArray(project.technologies) && project.technologies.length > 3 && (
             <span className="inline-block text-xs font-mono py-0.5 px-1.5 rounded-full bg-white/10 text-white/80">
               +{project.technologies.length - 3}
             </span>
@@ -127,13 +127,13 @@ const ProjectDetailsModal = ({ isOpen, onClose, project }: ProjectDetailsModalPr
         
         <div className="mb-6">
           <h3 className="text-lg font-medium mb-2">Technologies</h3>
-          <div className="flex flex-wrap gap-2">
-            {project.technologies && project.technologies.map((tech, index) => (
-              <span key={index} className="inline-block text-sm font-mono py-1 px-3 rounded-full bg-white/10 text-white/80">
-                {tech}
-              </span>
-            ))}
-          </div>
+        <div className="flex flex-wrap gap-2">
+          {Array.isArray(project.technologies) && project.technologies.map((tech, index) => (
+            <span key={index} className="inline-block text-sm font-mono py-1 px-3 rounded-full bg-white/10 text-white/80">
+              {tech}
+            </span>
+          ))}
+        </div>
         </div>
         
         <div className="flex gap-4">

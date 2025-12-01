@@ -30,29 +30,21 @@ const AdminLogin: React.FC = () => {
     setError('');
 
     try {
-      const response = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
+      const response = await apiClient.post('/auth/login', { email, password });
 
-      const data = await response.json();
-
-      if (response.ok) {
-        localStorage.setItem('adminToken', data.token);
+      if (response.data.token) {
+        localStorage.setItem('adminToken', response.data.token);
         toast({
           title: "Login successful",
           description: "Welcome to the admin panel!",
         });
         navigate('/admin');
       } else {
-        setError(data.message || 'Login failed');
+        setError('Login failed');
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error('Login error:', error);
-      setError('Network error. Please try again.');
+      setError(error.response?.data?.message || 'Network error. Please try again.');
     } finally {
       setIsLoading(false);
     }

@@ -10,6 +10,8 @@ import projectRoutes from './routes/projects';
 import techStackRoutes from './routes/techStack';
 import contactRoutes from './routes/contact';
 import aboutRoutes from './routes/about';
+import experienceRoutes from './routes/experience';
+import serviceRoutes from './routes/services';
 
 // Import middleware
 import connectDB from './config/database';
@@ -26,10 +28,6 @@ connectDB();
 
 // Security middleware
 app.use(helmet());
-app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:8080',
-  credentials: true
-}));
 
 // Rate limiting
 const limiter = rateLimit({
@@ -49,6 +47,8 @@ app.use('/api/projects', projectRoutes);
 app.use('/api/techstack', techStackRoutes);
 app.use('/api/contact', contactRoutes);
 app.use('/api/about', aboutRoutes);
+app.use('/api/experience', experienceRoutes);
+app.use('/api/services', serviceRoutes);
 
 // Health check route
 app.get('/api/health', (req, res) => {

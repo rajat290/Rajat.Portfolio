@@ -5,6 +5,7 @@ import TechStack from '../models/TechStack';
 import Service from '../models/Service';
 import Experience from '../models/Experience';
 import About from '../models/About';
+import User from '../models/User';
 
 const seedDatabase = async () => {
   try {
@@ -18,6 +19,7 @@ const seedDatabase = async () => {
     await Service.deleteMany({});
     await Experience.deleteMany({});
     await About.deleteMany({});
+    await User.deleteMany({});
 
     console.log('🧹 Cleared existing data');
 
@@ -326,6 +328,21 @@ const seedDatabase = async () => {
 
     await About.create(aboutData);
     console.log('✅ About seeded successfully');
+
+    // Seed Admin User
+    const bcrypt = require('bcryptjs');
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash('admin123', salt);
+
+    const adminUser = {
+      username: 'admin',
+      email: 'admin@rajattomar.com',
+      password: hashedPassword,
+      role: 'admin'
+    };
+
+    await User.create(adminUser);
+    console.log('✅ Admin user seeded successfully');
 
     console.log('🎉 Database seeding completed successfully!');
   } catch (error) {

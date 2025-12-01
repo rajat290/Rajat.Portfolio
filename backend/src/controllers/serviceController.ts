@@ -153,3 +153,44 @@ export const deleteService = async (req: AuthRequest, res: Response) => {
     });
   }
 };
+
+// @desc    Update service order (admin)
+// @route   PUT /api/services/:id/order
+// @access  Private/Admin
+export const updateServiceOrder = async (req: AuthRequest, res: Response) => {
+  try {
+    const { order } = req.body;
+
+    if (typeof order !== 'number' || order < 0) {
+      return res.status(400).json({
+        success: false,
+        message: 'Invalid order value'
+      });
+    }
+
+    const service = await Service.findByIdAndUpdate(
+      req.params.id,
+      { order, updatedBy: req.user._id },
+      { new: true, runValidators: true }
+    );
+
+    if (!service) {
+      return res.status(404).json({
+        success: false,
+        message: 'Service not found'
+      });
+    }
+
+    res.json({
+      success: true,
+      data: service,
+      message: 'Service order updated successfully'
+    });
+  } catch (error) {
+    console.error('Update service order error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Server error'
+    });
+  }
+};

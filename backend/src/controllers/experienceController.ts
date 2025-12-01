@@ -153,3 +153,44 @@ export const deleteExperience = async (req: AuthRequest, res: Response) => {
     });
   }
 };
+
+// @desc    Update experience order (admin)
+// @route   PUT /api/experience/:id/order
+// @access  Private/Admin
+export const updateExperienceOrder = async (req: AuthRequest, res: Response) => {
+  try {
+    const { order } = req.body;
+
+    if (typeof order !== 'number' || order < 0) {
+      return res.status(400).json({
+        success: false,
+        message: 'Invalid order value'
+      });
+    }
+
+    const experience = await Experience.findByIdAndUpdate(
+      req.params.id,
+      { order, updatedBy: req.user._id },
+      { new: true, runValidators: true }
+    );
+
+    if (!experience) {
+      return res.status(404).json({
+        success: false,
+        message: 'Experience not found'
+      });
+    }
+
+    res.json({
+      success: true,
+      data: experience,
+      message: 'Experience order updated successfully'
+    });
+  } catch (error) {
+    console.error('Update experience order error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Server error'
+    });
+  }
+};

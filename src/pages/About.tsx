@@ -1,11 +1,19 @@
 
 import { motion } from "framer-motion";
+import { useQuery } from "@tanstack/react-query";
 import SectionHeading from "@/components/SectionHeading";
 import Image from "@/components/Image";
 import { Briefcase, GraduationCap, Code, User, Heart } from "lucide-react";
 import StudyJourneyExperience from "@/components/StudyJourneyExperience";
 import TechStack from "@/components/TechStack";
 import Breadcrumb from "@/components/Breadcrumb";
+import apiClient from "@/lib/api";
+
+// API call to fetch about data
+const fetchAboutData = async () => {
+  const response = await apiClient.get('/about');
+  return response.data.data || [];
+};
 
 const About = () => {
   // Fetch about data from API
@@ -68,7 +76,7 @@ const About = () => {
       {/* Hero Section */}
       <SectionHeading
         title={heroSection?.title || "About Me"}
-        subtitle="01. WHO I AM"
+        subtitle="WHO I AM"
         description={heroSection?.content || "I build accessible, inclusive products and digital experiences for the web."}
       />
 

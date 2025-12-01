@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import AdminLayout from '@/components/admin/AdminLayout';
 import Dashboard from '@/components/admin/Dashboard';
@@ -10,10 +10,43 @@ import ContactAdmin from '@/components/admin/ContactAdmin';
 import AboutAdmin from '@/components/admin/AboutAdmin';
 
 const Admin = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(true); // For demo purposes
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
-  // For demo purposes, we'll assume authentication is handled elsewhere
-  // In production, this would check JWT tokens, etc.
+  useEffect(() => {
+    // Check if user is authenticated by verifying token
+    const checkAuth = async () => {
+      const token = localStorage.getItem('adminToken');
+      if (!token) {
+        setIsLoading(false);
+        return;
+      }
+
+      try {
+        const response = await fetch('http://localhost:5000/api/auth/verify', {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+
+        if (response.ok) {
+          setIsAuthenticated(true);
+        } else {
+          localStorage.removeItem('adminToken');
+        }
+      } catch (error) {
+        console.error('Auth verification failed:', error);
+        localStorage.removeItem('adminToken');
+      }
+      setIsLoading(false);
+    };
+
+    checkAuth();
+  }, []);
+
+  if (isLoading) {
+    return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
+  }
 
   if (!isAuthenticated) {
     return <Navigate to="/admin/login" replace />;

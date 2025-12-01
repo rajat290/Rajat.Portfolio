@@ -54,9 +54,7 @@ const UserSchema: Schema = new Schema({
   toObject: { virtuals: true }
 });
 
-// Index for better query performance
-UserSchema.index({ email: 1 });
-UserSchema.index({ username: 1 });
+// Indexes are automatically created by unique: true on email and username fields
 
 // Pre-save middleware to hash password
 UserSchema.pre<IUser>('save', async function(next) {
