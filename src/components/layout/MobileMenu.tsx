@@ -1,5 +1,5 @@
 
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface MobileMenuProps {
@@ -55,12 +55,12 @@ const MobileMenu = ({ isMenuOpen }: MobileMenuProps) => {
             >
               Blog
             </NavLink>
-            <button 
-              onClick={handleServiceClick}
+            <Link
+              to="/#services"
               className="text-2xl font-medium text-white/70 cursor-pointer"
             >
               Services
-            </button>
+            </Link>
             <NavLink 
               to="#contact" 
               className="text-2xl font-medium text-white/70"

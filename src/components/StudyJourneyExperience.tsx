@@ -60,7 +60,7 @@ const StudyJourneyExperience = () => {
 
   // Separate education and work experience
   const education = experienceData.filter(item => item.type === 'education') || [];
-  const experience = experienceData.filter(item => item.type === 'work') || [];
+  const experience = experienceData.filter(item => item.type === 'experience') || [];
 
   const containerVariants = {
     hidden: { opacity: 0 },

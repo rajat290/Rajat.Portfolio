@@ -1,7 +1,8 @@
 import { useRef, useState } from "react";
 import { motion, AnimatePresence, useMotionValue } from "framer-motion";
-import { ArrowRight, Flag } from "lucide-react";
+import { ArrowRight, Flag, ExternalLink, Github } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
+import { apiClient } from "@/lib/api";
 
 // Swiper imports
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -33,6 +34,7 @@ const fetchFeaturedProjects = async () => {
 const FeaturedCaseStudies = () => {
   const [current, setCurrent] = useState(0);
   const x = useMotionValue(0);
+  const innerSwiperRef = useRef(null);
 
   // Fetch featured projects from API
   const { data: projects = [], isLoading, error } = useQuery({
@@ -101,8 +103,6 @@ const FeaturedCaseStudies = () => {
   }
 
   const project = projects[current];
-
-  const innerSwiperRef = useRef(null);
 
   return (
     <section className="py-16 md:py-24">
@@ -238,45 +238,61 @@ const FeaturedCaseStudies = () => {
 
               {/* TECH STACK */}
               <div className="flex flex-wrap gap-2 mb-8">
-                {(project.tech || []).map((tech, index) => (
+                {(project.technologies || []).map((tech, index) => (
                   <motion.span
                     key={index}
                     whileHover={{ scale: 1.05 }}
                     className="inline-flex items-center gap-1.5 py-1 px-3 rounded-full bg-gray-800/50 border border-gray-700 text-sm"
                   >
-                    <span className="text-pink-400">{tech.icon}</span>
-                    {tech.name}
+                    {tech}
                   </motion.span>
                 ))}
               </div>
 
               {/* ⭐⭐⭐ LINKS SECTION — NEW ⭐⭐⭐ */}
-              {project.links && project.links.length > 0 && (
+              {((project.githubLink && project.githubLink !== "https://github.com") || (project.liveLink && project.liveLink !== "https://demo-communitylink.example.com")) && (
                 <div className="mt-4 space-y-3">
                   <h4 className="text-lg font-semibold text-white mb-2">
                     Project Links
                   </h4>
 
                   <div className="flex flex-wrap gap-3">
-                    {project.links.map((link, index) => (
+                    {project.githubLink && project.githubLink !== "https://github.com" && (
                       <motion.a
-                        key={index}
-                        href={link.url}
+                        href={project.githubLink}
                         target="_blank"
                         rel="noopener noreferrer"
                         whileHover={{ scale: 1.07, x: 4 }}
                         whileTap={{ scale: 0.97 }}
-                        className="flex items-center gap-2 px-4 py-2 rounded-lg 
+                        className="flex items-center gap-2 px-4 py-2 rounded-lg
+                        bg-gradient-to-r from-gray-700/40 via-gray-600/40 to-gray-700/40
+                        border border-gray-500/40
+                        text-gray-200 font-medium
+                        backdrop-blur-md shadow-md
+                        hover:shadow-gray-500/40 transition"
+                      >
+                        <Github size={16} className="text-gray-300" />
+                        GitHub
+                      </motion.a>
+                    )}
+                    {project.liveLink && project.liveLink !== "https://demo-communitylink.example.com" && (
+                      <motion.a
+                        href={project.liveLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.07, x: 4 }}
+                        whileTap={{ scale: 0.97 }}
+                        className="flex items-center gap-2 px-4 py-2 rounded-lg
                         bg-gradient-to-r from-pink-600/40 via-purple-600/40 to-pink-600/40
                         border border-pink-500/40
                         text-pink-200 font-medium
                         backdrop-blur-md shadow-md
                         hover:shadow-pink-500/40 transition"
                       >
-                        {link.name}
-                        <ArrowRight size={16} className="text-pink-300" />
+                        <ExternalLink size={16} className="text-pink-300" />
+                        Live Demo
                       </motion.a>
-                    ))}
+                    )}
                   </div>
                 </div>
               )}

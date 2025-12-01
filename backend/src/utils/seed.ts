@@ -52,11 +52,9 @@ const seedDatabase = async () => {
         longDescription: "CommunityLink is a robust web application designed for non-profit organizations to manage volunteer programs efficiently. Built with CakePHP 5, it features a complete CRUD system, advanced search functionality using QueryBuilder, secure file uploads, and a comprehensive dashboard with business intelligence insights. The application follows Australian standards with proper timezone configuration and professional branding.",
         technologies: ["CakePHP 5", "PHP 8.2", "MySQL", "Bootstrap 5", "JavaScript", "jQuery", "Composer", "Apache"],
         images: [
-          "src/Img/CommunityLInk/Screenshot 2025-11-15 122237.png",
-          "src/Img/CommunityLInk/Screenshot 2025-11-15 152743.png",
-          "src/Img/CommunityLInk/Screenshot 2025-11-15 152812.png",
-          "src/Img/CommunityLInk/Screenshot 2025-11-15 152833.png",
-          "src/Img/CommunityLInk/Screenshot 2025-11-15 152855.png"
+          "/lovable-uploads/b8063de8-b5ac-41b1-8174-24a8e3ee0307.png",
+          "/lovable-uploads/d6a17f57-e290-4c9f-8ecc-1e3cde07eb31.png",
+          "/lovable-uploads/1e3dd814-386a-48ae-b6c2-90ecf4abc1fb.jpg"
         ],
         points: [
           "Implemented MVC architecture with proper separation of concerns.",
@@ -214,7 +212,8 @@ const seedDatabase = async () => {
         icon: "Globe",
         price: "$25/Hours",
         ctaText: "Get started",
-        ctaLink: "#contact"
+        ctaLink: "#contact",
+        active: true
       },
       {
         title: "Complete Web/Mobile Applications",
@@ -222,7 +221,8 @@ const seedDatabase = async () => {
         icon: "Code",
         price: "$2,500+",
         ctaText: "Discuss your project",
-        ctaLink: "#contact"
+        ctaLink: "#contact",
+        active: true
       },
       {
         title: "Complete Management Systems for Any Industries",
@@ -230,7 +230,8 @@ const seedDatabase = async () => {
         icon: "School",
         price: "$3,000+",
         ctaText: "Learn more",
-        ctaLink: "#contact"
+        ctaLink: "#contact",
+        active: true
       },
       {
         title: "Complete Restaurant & Hotel Management Systems",
@@ -238,7 +239,8 @@ const seedDatabase = async () => {
         icon: "Database",
         price: "$1,000+",
         ctaText: "Get a quote",
-        ctaLink: "#contact"
+        ctaLink: "#contact",
+        active: true
       },
       {
         title: "API Development",
@@ -246,7 +248,8 @@ const seedDatabase = async () => {
         icon: "Server",
         price: "$1,500+",
         ctaText: "Discuss requirements",
-        ctaLink: "#contact"
+        ctaLink: "#contact",
+        active: true
       },
       {
         title: "Custom Enterprise Solutions",
@@ -254,7 +257,8 @@ const seedDatabase = async () => {
         icon: "Users",
         price: "Custom",
         ctaText: "Request consultation",
-        ctaLink: "#contact"
+        ctaLink: "#contact",
+        active: true
       }
     ];
 
@@ -330,14 +334,10 @@ const seedDatabase = async () => {
     console.log('✅ About seeded successfully');
 
     // Seed Admin User
-    const bcrypt = require('bcryptjs');
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash('admin123', salt);
-
     const adminUser = {
       username: 'admin',
       email: 'admin@rajattomar.com',
-      password: hashedPassword,
+      password: 'admin123',
       role: 'admin'
     };
 

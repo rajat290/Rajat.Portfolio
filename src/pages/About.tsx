@@ -57,7 +57,7 @@ const About = () => {
   }
 
   // Show error state
-  if (Error) {
+  if (error) {
     return (
       <div className="container px-4 mx-auto">
         <Breadcrumb items={[{ title: "About Me" }]} />

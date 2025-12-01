@@ -107,8 +107,41 @@ const Services = () => {
     );
   }
 
-  // Don't render if no services
-  if (!services || services.length === 0) {
+  // Show mock data if no services from API (for testing)
+  const mockServices = [
+    {
+      _id: '1',
+      title: "Custom Website Development",
+      description: "Responsive websites built with modern frameworks and optimized for performance and user experience.",
+      icon: "Globe",
+      price: "$25/Hours",
+      // ctaText: "Get started",
+      ctaLink: "#contact"
+    },
+    {
+      _id: '2',
+      title: "Complete Web/Mobile Applications",
+      description: "Full-stack web applications built with client requirements with a focus on performance.",
+      icon: "Code",
+      price: "$250+",
+      // ctaText: "Discuss your project",
+      ctaLink: "#contact"
+    },
+    {
+      _id: '3',
+      title: "Complete Management Systems",
+      description: "Comprehensive Management systems for Business to manage students, staff, and administrative tasks.",
+      icon: "School",
+      price: "$300+",
+      // ctaText: "Learn more",
+      ctaLink: "#contact"
+    }
+  ];
+
+  const displayServices = services && services.length > 0 ? services : mockServices;
+
+  // Don't render if no services and no mock data
+  if (!displayServices || displayServices.length === 0) {
     return null;
   }
 
@@ -121,7 +154,7 @@ const Services = () => {
       />
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
-        {services.map((service: any, index: number) => (
+        {displayServices.map((service: any, index: number) => (
           <ServiceCard
             key={service._id || index}
             icon={getIcon(service.icon)}

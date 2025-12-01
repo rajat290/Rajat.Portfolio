@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Mail, Download } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import FeaturedCaseStudies from "@/components/FeaturedCaseStudies";
 import Image from "@/components/Image";
 import StudyJourneyExperience from "@/components/StudyJourneyExperience";
@@ -51,6 +51,18 @@ const Index = () => {
     link.click();
     document.body.removeChild(link);
   };
+
+  // Handle hash scrolling
+  useEffect(() => {
+    if (location.hash) {
+      const element = document.getElementById(location.hash.substring(1));
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    }
+  }, [location]);
   return <div className="min-h-screen relative overflow-hidden">
     {/* Background Effects */}
     <div className="absolute inset-0 bg-[#1A1F2C] overflow-hidden">

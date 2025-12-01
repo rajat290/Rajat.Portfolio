@@ -29,6 +29,12 @@ connectDB();
 // Security middleware
 app.use(helmet());
 
+// CORS configuration
+app.use(cors({
+  origin: ['http://localhost:8080', 'http://localhost:8081'], // Allow frontend origins
+  credentials: true, // Allow credentials (cookies, authorization headers)
+}));
+
 // Rate limiting
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes

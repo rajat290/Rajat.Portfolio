@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
@@ -11,12 +11,6 @@ interface NavbarProps {
 }
 
 const Navbar = ({ isScrolled, toggleMenu, isMenuOpen }: NavbarProps) => {
-  const handleServiceClick = () => {
-    const servicesSection = document.getElementById('services');
-    if (servicesSection) {
-      servicesSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
 
   return (
     <header
@@ -63,12 +57,12 @@ const Navbar = ({ isScrolled, toggleMenu, isMenuOpen }: NavbarProps) => {
               >
                 Blog
               </NavLink>
-              <button
-                onClick={handleServiceClick}
+              <Link
+                to="/#services"
                 className="text-sm font-medium text-white/70 hover:text-white transition-colors duration-300 cursor-pointer"
               >
                 Services
-              </button>
+              </Link>
 
               <NavLink
                 to="#contact"
