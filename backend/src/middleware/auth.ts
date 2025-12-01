@@ -15,7 +15,8 @@ export const authenticateToken = async (req: AuthRequest, res: Response, next: N
       return res.status(401).json({ message: 'Access token required' });
     }
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'fallback_secret') as any;
+    // IMPORTANT: default secret must match the one used in authController.generateToken
+    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'fallback-secret') as any;
     const user = await User.findById(decoded.userId);
 
     if (!user || !user.isActive) {

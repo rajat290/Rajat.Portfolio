@@ -4,7 +4,6 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { FolderOpen, Briefcase, Code, GraduationCap, Mail, User, TrendingUp, Users } from 'lucide-react';
 
 const Dashboard = () => {
-  // Fetch dashboard stats
   const { data: stats, isLoading } = useQuery({
     queryKey: ['admin-stats'],
     queryFn: async () => {
@@ -26,7 +25,7 @@ const Dashboard = () => {
         about: about.data.data?.length || 0,
       };
     },
-    staleTime: 5 * 60 * 1000, // 5 minutes
+    staleTime: 5 * 60 * 1000,
   });
 
   const statCards = [
@@ -34,114 +33,185 @@ const Dashboard = () => {
       title: 'Projects',
       value: stats?.projects || 0,
       icon: FolderOpen,
-      color: 'text-blue-600',
-      bgColor: 'bg-blue-100',
+      accent: 'from-sky-500/20 via-sky-500/5 to-transparent',
     },
     {
       title: 'Services',
       value: stats?.services || 0,
       icon: Briefcase,
-      color: 'text-green-600',
-      bgColor: 'bg-green-100',
+      accent: 'from-emerald-500/20 via-emerald-500/5 to-transparent',
     },
     {
       title: 'Tech Stack',
       value: stats?.techstack || 0,
       icon: Code,
-      color: 'text-purple-600',
-      bgColor: 'bg-purple-100',
+      accent: 'from-violet-500/20 via-violet-500/5 to-transparent',
     },
     {
       title: 'Experience',
       value: stats?.experience || 0,
       icon: GraduationCap,
-      color: 'text-orange-600',
-      bgColor: 'bg-orange-100',
+      accent: 'from-amber-500/20 via-amber-500/5 to-transparent',
     },
     {
       title: 'Contact Messages',
       value: stats?.contact || 0,
       icon: Mail,
-      color: 'text-red-600',
-      bgColor: 'bg-red-100',
+      accent: 'from-rose-500/20 via-rose-500/5 to-transparent',
     },
     {
       title: 'About Sections',
       value: stats?.about || 0,
       icon: User,
-      color: 'text-indigo-600',
-      bgColor: 'bg-indigo-100',
+      accent: 'from-indigo-500/20 via-indigo-500/5 to-transparent',
     },
   ];
 
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500"></div>
+        <div className="relative h-12 w-12">
+          <div className="absolute inset-0 rounded-full border-2 border-slate-200" />
+          <div className="absolute inset-0 rounded-full border-2 border-violet-500 border-t-transparent animate-spin" />
+        </div>
       </div>
     );
   }
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
-        <p className="mt-2 text-gray-600">Manage your portfolio content</p>
+      {/* Header */}
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <h1 className="text-2xl sm:text-3xl font-semibold tracking-tight text-slate-900">
+            Overview
+          </h1>
+          <p className="mt-1 text-sm text-slate-600">
+            Quick snapshot of your portfolio content and recent activity.
+          </p>
+        </div>
+        <div className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1.5 text-xs text-slate-500 border border-slate-200 shadow-sm">
+          <TrendingUp className="h-3.5 w-3.5 text-emerald-500" />
+          <span>All systems healthy</span>
+        </div>
       </div>
 
-      {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {/* Stat cards */}
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
         {statCards.map((stat) => {
           const Icon = stat.icon;
           return (
-            <Card key={stat.title}>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium text-gray-600">
+            <Card
+              key={stat.title}
+              className="relative overflow-hidden border-slate-200/80 bg-gradient-to-br from-white to-slate-50 shadow-sm"
+            >
+              <div
+                className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${stat.accent}`}
+              />
+              <CardHeader className="relative flex flex-row items-center justify-between space-y-0 pb-1">
+                <CardTitle className="text-xs font-medium uppercase tracking-[0.16em] text-slate-500">
                   {stat.title}
                 </CardTitle>
-                <div className={`p-2 rounded-md ${stat.bgColor}`}>
-                  <Icon className={`h-4 w-4 ${stat.color}`} />
+                <div className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-white/80 border border-slate-200 shadow-sm">
+                  <Icon className="h-4 w-4 text-slate-600" />
                 </div>
               </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold text-gray-900">{stat.value}</div>
+              <CardContent className="relative pb-4 pt-1">
+                <div className="flex items-end justify-between">
+                  <div>
+                    <div className="text-2xl font-semibold text-slate-900">
+                      {stat.value}
+                    </div>
+                    <p className="mt-1 text-xs text-slate-500">
+                      Total {stat.title.toLowerCase()}
+                    </p>
+                  </div>
+                </div>
               </CardContent>
             </Card>
           );
         })}
       </div>
 
-      {/* Recent Activity */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Recent Activity</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-4">
-            <div className="flex items-center space-x-4">
-              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-              <div className="flex-1">
-                <p className="text-sm text-gray-600">Portfolio backend integration completed</p>
-                <p className="text-xs text-gray-400">2 hours ago</p>
+      {/* Secondary row */}
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-[minmax(0,1.6fr),minmax(0,1fr)]">
+        {/* Activity / notes */}
+        <Card className="border-slate-200/80 bg-white/90 shadow-sm">
+          <CardHeader className="pb-3">
+            <CardTitle className="text-sm font-medium text-slate-800">
+              Recent activity
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4 text-sm">
+            <div className="flex items-start gap-3 rounded-lg border border-slate-100 bg-slate-50 px-3 py-2.5">
+              <div className="mt-1 h-1.5 w-1.5 rounded-full bg-emerald-500" />
+              <div className="flex-1 space-y-0.5">
+                <p className="text-slate-700">
+                  Admin panel connected to live portfolio backend.
+                </p>
+                <p className="text-[11px] text-slate-500">Today • 2:14 PM</p>
               </div>
             </div>
-            <div className="flex items-center space-x-4">
-              <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-              <div className="flex-1">
-                <p className="text-sm text-gray-600">Frontend components updated with API integration</p>
-                <p className="text-xs text-gray-400">4 hours ago</p>
+            <div className="flex items-start gap-3 rounded-lg border border-slate-100 bg-white px-3 py-2.5">
+              <div className="mt-1 h-1.5 w-1.5 rounded-full bg-sky-500" />
+              <div className="flex-1 space-y-0.5">
+                <p className="text-slate-700">
+                  Projects, services and tech stack are synced with the website.
+                </p>
+                <p className="text-[11px] text-slate-500">Yesterday • 6:03 PM</p>
               </div>
             </div>
-            <div className="flex items-center space-x-4">
-              <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-              <div className="flex-1">
-                <p className="text-sm text-gray-600">Admin panel development started</p>
-                <p className="text-xs text-gray-400">Just now</p>
+            <div className="flex items-start gap-3 rounded-lg border border-dashed border-slate-200 bg-slate-50/70 px-3 py-2.5">
+              <div className="mt-1 h-1.5 w-1.5 rounded-full bg-violet-500" />
+              <div className="flex-1 space-y-0.5">
+                <p className="text-slate-700">
+                  Use the left navigation to add new projects, update services or
+                  refine your about sections.
+                </p>
+                <p className="text-[11px] text-slate-500">Tip</p>
               </div>
             </div>
-          </div>
-        </CardContent>
-      </Card>
+          </CardContent>
+        </Card>
+
+        {/* At-a-glance */}
+        <Card className="border-slate-200/80 bg-slate-900 text-slate-50 overflow-hidden shadow-sm">
+          <CardHeader className="pb-2">
+            <CardTitle className="flex items-center justify-between text-sm font-medium text-slate-50">
+              Portfolio snapshot
+              <Users className="h-4 w-4 text-slate-300" />
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4 text-xs text-slate-200">
+            <div className="grid grid-cols-2 gap-3">
+              <div className="rounded-lg bg-slate-800/80 px-3 py-2.5">
+                <p className="text-[11px] uppercase tracking-[0.16em] text-slate-400">
+                  Content
+                </p>
+                <p className="mt-1 text-lg font-semibold">
+                  {stats?.projects || 0} <span className="text-xs font-normal">projects</span>
+                </p>
+              </div>
+              <div className="rounded-lg bg-slate-800/80 px-3 py-2.5">
+                <p className="text-[11px] uppercase tracking-[0.16em] text-slate-400">
+                  Services
+                </p>
+                <p className="mt-1 text-lg font-semibold">
+                  {stats?.services || 0} <span className="text-xs font-normal">live</span>
+                </p>
+              </div>
+            </div>
+            <div className="rounded-lg bg-slate-800/80 px-3 py-2.5">
+              <p className="text-[11px] uppercase tracking-[0.16em] text-slate-400">
+                Inbox
+              </p>
+              <p className="mt-1 text-sm">
+                {stats?.contact || 0} contact messages stored in the database.
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 };

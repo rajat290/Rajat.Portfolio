@@ -14,6 +14,7 @@ interface ProjectDetailsModalProps {
   project: Project | null;
 }
 
+// Shape used inside the Projects page UI
 interface Project {
   title: string;
   description: string;
@@ -24,10 +25,52 @@ interface Project {
   image: string;
 }
 
-// API call to fetch all projects
-const fetchProjects = async () => {
+// Shape returned by the backend API
+interface ApiProject {
+  title: string;
+  description: string;
+  longDescription: string;
+  images: string[];
+  tech: Array<{
+    name: string;
+    icon: string;
+    color: string;
+  }>;
+  links: Array<{
+    name: string;
+    url: string;
+  }>;
+}
+
+// API call to fetch all projects and map them to the UI-friendly shape
+const fetchProjects = async (): Promise<Project[]> => {
   const response = await apiClient.get('/projects');
-  return response.data.data || [];
+  const apiProjects: ApiProject[] = response.data.data || [];
+
+  return apiProjects.map((project) => {
+    const githubLink =
+      project.links.find((link) => link.name.toLowerCase().includes('github'))?.url ||
+      project.links[0]?.url ||
+      '#';
+
+    const liveLink =
+      project.links.find((link) =>
+        ['live', 'demo', 'preview'].some((key) =>
+          link.name.toLowerCase().includes(key)
+        )
+      )?.url ||
+      githubLink;
+
+    return {
+      title: project.title,
+      description: project.description,
+      longDescription: project.longDescription,
+      technologies: project.tech?.map((t) => t.name) || [],
+      githubLink,
+      liveLink,
+      image: project.images?.[0] || "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=1170&q=80",
+    };
+  });
 };
 
 const ProjectCard = ({ project, index, onClick }: { project: Project; index: number; onClick: () => void }) => {

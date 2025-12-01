@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import { Shield, Eye, EyeOff } from 'lucide-react';
+import { apiClient } from '@/lib/api';
 
 const AdminLogin: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -32,8 +33,11 @@ const AdminLogin: React.FC = () => {
     try {
       const response = await apiClient.post('/auth/login', { email, password });
 
-      if (response.data.token) {
-        localStorage.setItem('adminToken', response.data.token);
+      // Backend returns token inside `data.token`, not at the root of response.data
+      const token = response.data?.data?.token;
+
+      if (token) {
+        localStorage.setItem('adminToken', token);
         toast({
           title: "Login successful",
           description: "Welcome to the admin panel!",
@@ -80,7 +84,7 @@ const AdminLogin: React.FC = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  placeholder="admin@example.com"
+                  placeholder="admin@rajattomar.com"
                   disabled={isLoading}
                 />
               </div>

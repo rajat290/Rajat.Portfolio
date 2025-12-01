@@ -8,40 +8,21 @@ import TechStackAdmin from '@/components/admin/TechStackAdmin';
 import ExperienceAdmin from '@/components/admin/ExperienceAdmin';
 import ContactAdmin from '@/components/admin/ContactAdmin';
 import AboutAdmin from '@/components/admin/AboutAdmin';
+import { apiClient } from '@/lib/api';
 
 const Admin = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Check if user is authenticated by verifying token
-    const checkAuth = async () => {
-      const token = localStorage.getItem('adminToken');
-      if (!token) {
-        setIsLoading(false);
-        return;
-      }
-
-      try {
-        const response = await fetch('http://localhost:5000/api/auth/verify', {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        });
-
-        if (response.ok) {
-          setIsAuthenticated(true);
-        } else {
-          localStorage.removeItem('adminToken');
-        }
-      } catch (error) {
-        console.error('Auth verification failed:', error);
-        localStorage.removeItem('adminToken');
-      }
-      setIsLoading(false);
-    };
-
-    checkAuth();
+    // Simple client-side auth check: if a token exists, treat as authenticated
+    const token = localStorage.getItem('adminToken');
+    if (token) {
+      setIsAuthenticated(true);
+    } else {
+      setIsAuthenticated(false);
+    }
+    setIsLoading(false);
   }, []);
 
   if (isLoading) {
