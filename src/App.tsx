@@ -13,6 +13,7 @@ import Projects from "./pages/Projects";
 import NotFound from "./pages/NotFound";
 import Admin from "./pages/Admin";
 import AdminLogin from "./pages/AdminLogin";
+import ResumeBuilder from "./pages/ResumeBuilder";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +29,7 @@ const App = () => (
             <Route path="/projects" element={<Projects />} />
             <Route path="/about" element={<About />} />
             <Route path="/experience" element={<Experience />} />
+            <Route path="/resume-builder" element={<ResumeBuilder />} />
             <Route path="/admin/login" element={<AdminLogin />} />
             <Route path="/admin/*" element={<Admin />} />
             <Route path="*" element={<NotFound />} />

@@ -50,10 +50,12 @@ const MobileMenu = ({ isMenuOpen }: MobileMenuProps) => {
               About
             </NavLink>
             <NavLink 
-              to="#blog" 
-              className="text-2xl font-medium text-white/70"
+              to="/resume-builder" 
+              className={({ isActive }) => 
+                `text-2xl font-medium ${isActive ? 'text-white' : 'text-white/70'}`
+              }
             >
-              Blog
+              Resume Builder
             </NavLink>
             <Link
               to="/#services"

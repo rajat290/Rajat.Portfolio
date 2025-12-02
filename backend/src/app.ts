@@ -31,8 +31,11 @@ app.use(helmet());
 
 // CORS configuration
 app.use(cors({
-  origin: ['http://localhost:8080', 'http://localhost:8081'], // Allow frontend origins
-  credentials: true, // Allow credentials (cookies, authorization headers)
+  origin: [
+    'http://localhost:8080',                   // local Vite dev
+    process.env.FRONTEND_URL || ''             // Netlify prod URL
+  ],
+  credentials: true,
 }));
 
 // Rate limiting

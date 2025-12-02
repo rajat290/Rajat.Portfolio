@@ -52,10 +52,14 @@ const Navbar = ({ isScrolled, toggleMenu, isMenuOpen }: NavbarProps) => {
                 About
               </NavLink>
               <NavLink
-                to="#blog"
-                className="text-sm font-medium text-white/70 hover:text-white transition-colors duration-300"
+                to="/resume-builder"
+                className={({ isActive }) =>
+                  `text-sm font-medium transition-colors duration-300 ${
+                    isActive ? "text-white" : "text-white/70 hover:text-white"
+                  }`
+                }
               >
-                Blog
+                Resume Builder
               </NavLink>
               <Link
                 to="/#services"
